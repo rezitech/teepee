@@ -68,7 +68,7 @@ You can even use external templates in &lt;script&gt; tags to make your page as 
 	<body>
 		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
 		<script src="demo-advanced.tpl.html" id="demo-html" type="text/x-tpl">
-			<-- Contents of the external file -->
+			<-- Contents of "demo-advanced.tpl.html" -->
 			<h1>
 				{{=pageTitle}}
 			</h1>
@@ -83,7 +83,7 @@ You can even use external templates in &lt;script&gt; tags to make your page as 
 			</nav>
 		</script>
 		<script src="demo-advanced.tpl.css" id="demo-css" type="text/x-tpl">
-			/* Contents of the external file */
+			/* Contents of "demo-advanced.tpl.css" */
 			body {
 				background: {{=pageBackgroundColor}};
 				color: {{=pageTextColor}};
