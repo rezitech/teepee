@@ -191,8 +191,8 @@
 		instance.render.toString = instance.render;
 		//
 		//
-		instance.write = function () {
-			document.write(instance.render.apply(instance, arguments));
+		instance.write = function (tpl, use) {
+			document.write(instance.render(tpl, use));
 		};
 		//
 		// we're done here
