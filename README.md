@@ -7,7 +7,7 @@ Teepee is a templating language for JavaScript, ideal for creating websites, web
 How to use Teepee
 -----------------
 
-Teepee syntax is both easy to use, and completely customizable.  By default, Teepee's syntax is like that of Mustache[mustache], another absolutely fantastic markup language (which is itself based on Google's CTemplate).
+Teepee syntax is both easy to use, and completely customizable.  By default, Teepee's syntax is like that of [Mustache][mustache], another absolutely fantastic markup language (which is itself based on [CTemplate][ctemplate]).
 
 	<script src="tpl.js"></script>
 	<script>
@@ -45,5 +45,6 @@ Contributing
 5. Create an [Issue][1] with a link to your branch
 6. Enjoy a refreshing Diet Coke and wait
 
-[1]: http://github.com/rezitech/teepee/issues
-[mustache]: http://mustache.github.com/
+[1]: //github.com/rezitech/teepee/issues
+[mustache]: //mustache.github.com/
+[ctemplate]: //code.google.com/p/google-ctemplate/
