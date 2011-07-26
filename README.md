@@ -65,6 +65,32 @@ You can even use templates in &lt;script&gt; tags to make your entire page. Swee
 
 You can even use external templates in &lt;script&gt; tags to make your page as well as style it [Sass][sass]-style. Nifty!
 
+demo-advanced.tpl.html ->
+	<h1>
+		{{=pageTitle}}
+	</h1>
+	
+	<nav>
+		<ul>
+			{{#pageNavigation}}
+			<li>
+				<a href="{{=pageNavigation.href}}">{{=pageNavigation.title}}</a>
+			</li>
+			{{/pageNavigation}}
+		</Ul>
+	</nav>
+
+demo-advanced.tpl.css ->
+	body {
+		background: {{=pageBackgroundColor}};
+		color: {{=pageTextColor}};
+	}
+	
+	a {
+		color: {{=pageTextColor}};
+		text-decoration: none;
+	}
+
 	<body>
 		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
 		<script src="demo-advanced.tpl.html" id="demo-html" type="text/x-tpl"></script>
@@ -105,4 +131,4 @@ Contributing
 [mustache]: http://mustache.github.com/
 [ctemplate]: //code.google.com/p/google-ctemplate/
 [jquery]: http://jquery.com
-[sass][http://sass-lang.com/]
+[sass]: http://sass-lang.com/

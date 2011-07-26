@@ -1,17 +1,6 @@
 body {
 	background: {{=pageBackgroundColor}};
 	color: {{=pageTextColor}};
-	font: 12px/1.5 sans-serif;
-	margin: 0;
-}
-
-h1,
-ul {
-	margin: 1em;
-}
-
-h1 {
-	font-size: 24px;
 }
 
 a {
