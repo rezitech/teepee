@@ -1,4 +1,4 @@
-(function () {
+(function (doc) {
 	// return whether a value is worth displaying IMHO
 	function isPositive (val) {
 		return val !== undefined && val !== null && val !== false
@@ -163,7 +163,7 @@
 		//
 		// set the template string by document id
 		instance.tplById = function (id, bool) {
-			id = document.getElementById(id);
+			id = doc.getElementById(id);
 			bool = bool === undefined ? true : bool;
 			if (id.src) {
 				var r = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -190,18 +190,20 @@
 		};
 		instance.render.toString = instance.render;
 		//
-		//
+		// write a rendered template to the document
 		instance.write = function (tpl, use) {
-			document.write(instance.render(tpl, use));
+			doc.write(instance.render(tpl, use));
+		};
+		//
+		// append a rendered template to the document as a style
+		instance.writeCSS = function (tpl, use) {
+			var div = doc.createElement('div');
+			div.innerHTML = '<style>'+instance.render(tpl, use)+'</style>';
+			doc.documentElement.firstChild.appendChild(div.firstChild);
+			return instance;
 		};
 		//
 		// we're done here
 		return instance;
 	};
-	Teepee.i = function () {
-		return new Teepee;
-	};
-	Teepee.write = function (tpl, use) {
-		document.write((new Teepee).render(tpl, use));
-	};
-})();
+})(document);

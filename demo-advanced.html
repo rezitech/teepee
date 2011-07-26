@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Teepee Demo</title>
+	</head>
+	<body>
 		<script src="teepee.js"></script>
 		<script src="demo-advanced.tpl.html" id="demo-html" type="text/x-tpl"></script>
 		<script src="demo-advanced.tpl.css" id="demo-css" type="text/x-tpl"></script>
@@ -21,12 +23,9 @@
 		};
 		</script>
 		<script>
-		var div = document.createElement('div');
-		div.innerHTML = '<style>'+(new Teepee).tplById('demo-css', false).use(demoObject).render+'</style>';
-		document.documentElement.firstChild.appendChild(div.firstChild);
+		var tp = new Teepee();
+		tp.use(demoObject);
+		tp.tplById('demo-css', false).writeCSS().tplById('demo-html', false).write();
 		</script>
-	</head>
-	<body>
-		<script>document.body.innerHTML = (new Teepee).tplById('demo-html', false).use(demoObject).render;</script>
 	</body>
 </html>
