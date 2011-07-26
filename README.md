@@ -32,7 +32,7 @@ You can change Teepee's syntax to your heart's content.
 	</body>
 
 
-That's right, most functions in Teepee are chainable (like jQuery[jquery]).
+That's right, most functions in Teepee are chainable (like [jQuery][jquery]).
 -----
 
 
