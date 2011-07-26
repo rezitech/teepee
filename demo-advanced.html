@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Teepee Demo</title>
+		<script src="teepee.js"></script>
+		<script src="demo-advanced.tpl.html" id="demo-html" type="text/x-tpl"></script>
+		<script src="demo-advanced.tpl.css" id="demo-css" type="text/x-tpl"></script>
+		<script>
+		demoObject = {
+			pageTitle: 'Home',
+			pageNavigation: [
+				{ href: '#uno', title: 'One' },
+				{ href: '#dose', title: 'Two' },
+				{ href: '#tres', title: 'Three' },
+				{ href: '#quatro', title: 'Four' },
+				{ href: '#cinco', title: 'Five' },
+			],
+			pageBackgroundColor: '#444',
+			pageTextColor: '#FFF'
+		};
+		</script>
+		<script>
+		var div = document.createElement('div');
+		div.innerHTML = '<style>'+(new Teepee).tplById('demo-css', false).use(demoObject).render+'</style>';
+		document.documentElement.firstChild.appendChild(div.firstChild);
+		</script>
+	</head>
+	<body>
+		<script>document.body.innerHTML = (new Teepee).tplById('demo-html', false).use(demoObject).render;</script>
+	</body>
+</html>

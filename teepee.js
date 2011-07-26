@@ -8,16 +8,16 @@
 		return String(str).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 	}
 	// the tpl function
-	window.Tpl = function () {
+	window.Teepee = function () {
 		// turn a string into a template array
 		function tplArray (str) {
 			var
 			callee = arguments.callee,
 			tpl = str.match(
-				(new RegExp('([\\W\\w]*?)'+
-				escapeRegExp(storage.openBracket)+
+				(new RegExp('^([\\W\\w]*?)'+
+				escapeRegExp(storage.opener)+
 				'([\\W\\w]*?)'+
-				escapeRegExp(storage.closeBracket)+
+				escapeRegExp(storage.closer)+
 				'([\\W\\w]*?)$'))
 			),
 			arr = [];
@@ -40,8 +40,8 @@
 				if (e.constructor === [].constructor) {
 					if (
 						(new RegExp('^('+
-						escapeRegExp(storage.ifChar)+'|'+
-						escapeRegExp(storage.notChar)+'|'+
+						escapeRegExp(storage.iffer)+'|'+
+						escapeRegExp(storage.notter)+'|'+
 						escapeRegExp(storage.loopChar)+
 						')$')
 					).test(e[0])) {
@@ -54,7 +54,7 @@
 						arr = arr.concat(after[1]);
 						--i;
 					}
-					else if ((new RegExp('^'+escapeRegExp(storage.printChar)+'$')).test(e[0])) {
+					else if ((new RegExp('^'+escapeRegExp(storage.printer)+'$')).test(e[0])) {
 						during.push({condition: e});
 					}
 					else {
@@ -82,11 +82,11 @@
 					varValue = (new Function('return arguments[0].'+varName))(obj),
 					ei, eo;
 					// print
-					if (chr === storage.printChar && isPositive(varValue)) html += varValue;
+					if (chr === storage.printer && isPositive(varValue)) html += varValue;
 					// if
-					else if (chr === storage.ifChar && isPositive(varValue)) html += callee(e.children, obj);
+					else if (chr === storage.iffer && isPositive(varValue)) html += callee(e.children, obj);
 					// if not
-					else if (chr === storage.notChar && !isPositive(varValue)) html += callee(e.children, obj);
+					else if (chr === storage.notter && !isPositive(varValue)) html += callee(e.children, obj);
 					// loop
 					else if (chr === storage.loopChar && isPositive(varValue)) {
 						ei = -1;
@@ -103,38 +103,105 @@
 		callee = arguments.callee,
 		instance = this || callee,
 		storage = {
-			closeBracket: '}}',
-			ifChar: '?',
+			closer: '}}',
+			iffer: '?',
 			loopChar: '#',
-			notChar: '!',
-			openBracket: '{{',
-			printChar: '$'
+			notter: '!',
+			opener: '{{',
+			printer: '=',
+			tpl: '',
+			use: {}
 		};
-		// set the closing bracket character(s)
-		instance.closeBracket = function (str) {
-			storage.closeBracket = String(str);
+		//
+		// get/set the closing character(s)
+		instance.closer = function (str) {
+			if (str === undefined) return storage.closer;
+			storage.closer = String(str);
+			return instance;
 		};
-		// set the if statement character(s)
-		instance.ifChar = function (str) {
-			storage.ifChar = String(str);
+		instance.closer.toString = instance.closer;
+		//
+		// get/set the if character(s)
+		instance.iffer = function (str) {
+			if (str === undefined) return storage.iffer;
+			storage.iffer = String(str);
+			return instance;
 		};
-		// set the if not statement character(s)
-		instance.notChar = function (str) {
-			storage.notChar = String(str);
+		instance.iffer.toString = instance.iffer;
+		//
+		// get/set the if not character(s)
+		instance.notter = function (str) {
+			if (str === undefined) return storage.notter;
+			storage.notter = String(str);
+			return instance;
 		};
-		// set the opening bracket character(s)
-		instance.openBracket = function (str) {
-			storage.openBracket = String(str);
+		instance.notter.toString = instance.notter;
+		//
+		// get/set the opening character(s)
+		instance.opener = function (str) {
+			if (str === undefined) return storage.opener;
+			storage.opener = String(str);
+			return instance;
 		};
-		// set the print character(s)
-		instance.printChar = function (str) {
-			storage.printChar = String(str);
+		instance.opener.toString = instance.opener;
+		//
+		// get/set the printing character(s)
+		instance.printer = function (str) {
+			if (str === undefined) return storage.printer;
+			storage.printer = String(str);
+			return instance;
 		};
+		instance.printer.toString = instance.printer;
+		//
+		// get/set the template string
+		instance.tpl = function (str) {
+			if (str === undefined) return storage.tpl;
+			storage.tpl = String(str);
+			return instance;
+		};
+		instance.tpl.toString = instance.tpl;
+		//
+		// set the template string by document id
+		instance.tplById = function (id, bool) {
+			id = document.getElementById(id);
+			bool = bool === undefined ? true : bool;
+			if (id.src) {
+				var r = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+				r.open('GET', id.src, bool);
+				r.send(null);
+				if (bool) r.onreadystatechange = function () {
+					if (r.readyState == 4) storage.tpl = r.responseText;
+				}; else storage.tpl = r.responseText;
+			}
+			else storage.tpl = id.innerHTML;
+			return instance;
+		};
+		//
+		// get/set the scope object
+		instance.use = function (obj) {
+			if (obj === undefined) return storage.use;
+			storage.use = Object(obj);
+			return instance;
+		};
+		//
 		// render a template with a scope object
-		instance.render = function (tpl, obj) {
-			return tplRender(tplObject(tplArray(tpl))[0], obj);
+		instance.render = function (tpl, use) {
+			return tplRender(tplObject(tplArray(tpl || storage.tpl))[0], use || storage.use);
 		};
+		instance.render.toString = instance.render;
+		//
+		//
+		instance.write = function () {
+			document.write(instance.render.apply(instance, arguments));
+		};
+		//
 		// we're done here
 		return instance;
+	};
+	Teepee.i = function () {
+		return new Teepee;
+	};
+	Teepee.write = function (tpl, use) {
+		document.write((new Teepee).render(tpl, use));
 	};
 })();

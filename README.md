@@ -1,7 +1,7 @@
 Teepee
 ======
 
-Teepee is a templating language for JavaScript, ideal for creating websites, webapps, or anything else - quickly.  Teepee is stable, small, fast, and even lets you control the syntax (and all of this in 745 bytes).
+Teepee is a templating language for JavaScript, ideal for creating websites, webapps, or anything else - quickly.  Teepee is stable, fast, easy, and even lets you control the syntax (and all of this in less than 1KB).
 
 
 How to use Teepee
@@ -9,26 +9,28 @@ How to use Teepee
 
 Teepee syntax is both easy to use, and completely customizable.  By default, Teepee's syntax is like that of [Mustache][mustache], another absolutely fantastic markup language (which is itself based on [CTemplate][ctemplate]).
 
-	<script src="tpl.js"></script>
-	<script>
-	var t = new Tpl();
-	t.render('Hello, {{$a}}!', {a:'World'});
-	</script>
+	<body>
+		<script src="teepee.js"></script>
+		<script>Teepee.write('Hello, {{=who}}!', { who: 'World' });</script>
+	</body>
 
 You can change Teepee's syntax to your heart's content.
 
-	<script src="tpl.js"></script>
-	<script>
-	var t = new Tpl();
-	t.openingBracket('@');
-	t.closingBracket('@');
-	t.printingBracket('=');
-	t.render('Hello, @=a@!', {a:'World'});
-	</script>
+	<body>
+		<script src="teepee.js"></script>
+		<script>
+		var t = new Teepee();
+		t.opener('@').closer('@').printer('$');
+		t.write('The quick @$animal@ jumps over the lazy dog.', { animal: 'brown fox' });
+		</script>
+	</body>
 
 
-Installation
-------------
+That's right, most functions in Teepee are chainable (like jQuery).
+
+
+Setup
+-----
 
 To use Teepee, include this script anywhere in your page.  You can even hotlink to the latest Teepee.
 
