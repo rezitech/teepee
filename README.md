@@ -98,9 +98,9 @@ You can even use external templates in &lt;script&gt; tags to make your page as 
 			pageTitle: 'Home',
 			pageNavigation: [
 				{ href: '#uno', title: 'One' },
-				{ href: '#dose', title: 'Two' },
+				{ href: '#dos', title: 'Two' },
 				{ href: '#tres', title: 'Three' },
-				{ href: '#quatro', title: 'Four' },
+				{ href: '#cuatro', title: 'Four' },
 				{ href: '#cinco', title: 'Five' },
 			],
 			pageBackgroundColor: '#444',
