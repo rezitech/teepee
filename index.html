@@ -67,6 +67,29 @@
     <span class="nt">&lt;script&gt;</span>
     <span class="kd">var</span> <span class="nx">tp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Teepee</span><span class="p">();</span>
     <span class="nx">tp</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span>
+        <span class="s1">'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!'</span><span class="p">,</span>
+        <span class="p">{</span> <span class="nx">isMars</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">isEarth</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
+    <span class="p">);</span> <span class="c1">// prints "Hello, Earth!"</span>
+    <span class="nx">tp</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span>
+        <span class="s1">'Hello{{?person === "Dolly"}}, {{=person}}{{/person}}!'</span><span class="p">,</span>
+        <span class="p">{</span> <span class="nx">person</span><span class="o">:</span> <span class="s2">"Dolly"</span> <span class="p">}</span>
+    <span class="p">);</span> <span class="c1">// prints "Hello, Dolly!"</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre>
+						</div>
+						<h3>
+							Examples: Looping
+						</h3>
+						<p>
+							Use a simplified loop statement in your templates to loop through an array. Yea Yea Yea!
+						</p>
+						<div class="codeblock">
+<pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//raw.github.com/rezitech/teepee/master/teepee.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+    <span class="kd">var</span> <span class="nx">tp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Teepee</span><span class="p">();</span>
+    <span class="nx">tp</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span>
         <span class="s1">'Ask these questions:{{#q}} {{=q}}{{/q}}.'</span><span class="p">,</span>
         <span class="p">{</span> <span class="nx">q</span><span class="o">:</span> <span class="p">[</span><span class="s1">'Who'</span><span class="p">,</span> <span class="s1">'What'</span><span class="p">,</span> <span class="s1">'Where'</span><span class="p">,</span> <span class="s1">'When'</span><span class="p">,</span> <span class="s1">'Why'</span><span class="p">]</span> <span class="p">}</span>
     <span class="p">);</span> <span class="c1">// prints "Ask these questions: Who What Where When Why."</span>
