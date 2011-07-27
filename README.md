@@ -52,7 +52,7 @@ Use simplified IF and IF NOT statements in your templates for even more dynamic 
 
 ### Example: Looping
 
-Use a simplified loop statement in your templates to loop through an array. Uhuh uhuh uhuh!
+Use a simplified loop statement in your templates to loop through an array. Yea Yea Yea!
 
 ```html
 <body>
