@@ -6,6 +6,6 @@
 		<script src="teepee.js"></script>
 	</head>
 	<body>
-		<script>Teepee.write('Hello, {{=who}}!', { who: 'World' });</script>
+		<script>var tp = new Teepee(); tp.write('Hello, {{=who}}!', { who: 'World' });</script>
 	</body>
 </html>
