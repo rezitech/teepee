@@ -7,8 +7,9 @@ Teepee is a templating system for JavaScript, ideal for creating websites, webap
 
 To use Teepee, include this script anywhere in your page. You can even hotlink to the latest Teepee (well, you can't in IE9). Woot ('cept for IE9)!
 
-	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-
+```html
+<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
+```
 
 ### Example: Hello World
 
@@ -19,7 +20,10 @@ Teepee syntax is both easy to use, and completely customizable. By default, Teep
 	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
 	<script>
 	var tp = new Teepee();
-	tp.write('Hello, {{=who}}!', { who: 'World' }); // prints "Hello, World!"
+	tp.write(
+		'Hello, {{=who}}!',
+		{ who: 'World' }
+	); // prints "Hello, World!"
 	</script>
 </body>
 ```
@@ -68,7 +72,10 @@ You can change Teepee's syntax to your heart's content. Yay!
 	<script>
 	var t = new Teepee();
 	t.opener('@').closer('@').printer('$');
-	t.write('The quick @$animal@ jumps over the lazy dog.', { animal: 'brown fox' });
+	t.write(
+		'The quick @$jumper@ jumps over the @$jumpee@.',
+		{ jumper: 'brown fox', jumpee: 'lazy dog' }
+	); // prints "The quick brown fox jumps over the lazy dog."
 	</script>
 </body>
 ```
