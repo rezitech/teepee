@@ -1,18 +1,16 @@
-Teepee
-======
+# Teepee
 
 Teepee is a templating system for JavaScript, ideal for creating websites, webapps, or anything else - quickly. Teepee is stable, fast, easy, and even lets you control the syntax (and all of this in 1KB).
 
 
-Using Teepee
-------------
+## Using Teepee
 
 To use Teepee, include this script anywhere in your page. You can even hotlink to the latest Teepee (well, you can't in IE9). Woot ('cept for IE9)!
 
 	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
 
 
-### Hello World Example
+### Example: Hello World
 
 Teepee syntax is both easy to use, and completely customizable. By default, Teepee's syntax is like that of [Mustache][mustache], an absolutely fantastic markup language (which is itself based on [CTemplate][ctemplate]). Awesome!
 
@@ -22,7 +20,7 @@ Teepee syntax is both easy to use, and completely customizable. By default, Teep
 	</body>
 
 
-### Syntax Mod Example
+### Example: Syntax Mod
 
 You can change Teepee's syntax to your heart's content. Yay!
 
@@ -38,7 +36,7 @@ You can change Teepee's syntax to your heart's content. Yay!
 That's right, you may have noticed that most functions in Teepee are chainable (like [jQuery][jquery]). Nice!
 
 
-### Script Tag Examples
+### Examples: Script Tag
 
 You can even use templates in &lt;script&gt; tags to make your entire page. Sweet!
 
@@ -115,8 +113,265 @@ You can even use external templates in &lt;script&gt; tags to make your page as 
 	</body>
 
 
-Contributing
-------------
+## Features
+
+Teepee's filled with functionality that will allow you to start developing immediately.
+
+---
+
+### Creating a new instance
+
+#### Syntax
+
+_tp_ = new Teepee()
+
+----
+
+### opener
+
+#### Syntax
+
+_tp_.opener
+_tp_.opener ( _chars_ )
+
+#### Summary
+
+Sets the opening character(s) of Teepee code and returns the instance of Teepee. If nothing is passed, the current opening character(s) are returned.
+
+#### Parameters
+
+<dl>
+	<dt>chars</dt>
+	<dd>The character(s) to be used.</dd>
+</dl>
+
+----
+
+### closer
+
+#### Syntax
+
+_tp_.closer
+_tp_.closer ( _chars_ )
+
+#### Summary
+
+Sets the closing character(s) of Teepee code and returns the instance of Teepee. If nothing is passed, the current closing character(s) are returned.
+
+#### Parameters
+
+<dl>
+	<dt>chars</dt>
+	<dd>The character(s) to be used.</dd>
+</dl>
+
+----
+
+### iffer
+
+#### Syntax
+
+_tp_.iffer
+_tp_.iffer ( _chars_ )
+
+#### Summary
+
+Sets the character(s) used to begin an IF statement and returns the instance of Teepee. If nothing is passed, the current IF character(s) are returned.
+
+#### Parameters
+
+<dl>
+	<dt>chars</dt>
+	<dd>The character(s) to be used.</dd>
+</dl>
+
+----
+
+### closer
+
+#### Syntax
+
+_tp_.notter
+_tp_.notter ( _chars_ )
+
+#### Summary
+
+Sets the character(s) used to begin an IF NOT statement and returns the instance of Teepee. If nothing is passed, the current IF NOT character(s) are returned.
+
+#### Parameters
+
+<dl>
+	<dt>chars</dt>
+	<dd>The character(s) to be used.</dd>
+</dl>
+
+----
+
+### looper
+
+#### Syntax
+
+_tp_.looper
+_tp_.looper ( _chars_ )
+
+#### Summary
+
+Sets the character(s) used to begin a FOR statement and returns the instance of Teepee. If nothing is passed, the current FOR character(s) are returned.
+
+#### Parameters
+
+<dl>
+	<dt>chars</dt>
+	<dd>The character(s) to be used.</dd>
+</dl>
+
+----
+
+### printer
+
+#### Syntax
+
+_tp_.printer
+_tp_.printer ( _chars_ )
+
+#### Summary
+
+Sets the character(s) used to print a variable and returns the instance of Teepee. If nothing is passed, the current printing character(s) are returned.
+
+#### Parameters
+
+<dl>
+	<dt>chars</dt>
+	<dd>The character(s) to be used.</dd>
+</dl>
+
+----
+
+### tpl
+
+#### Syntax
+
+_tp_.tpl ( _tpl_ )
+
+#### Summary
+
+Assigns the template string and returns the instance of Teepee. If nothing is passed, the current template string is returned.
+
+#### Parameters
+
+<dl>
+	<dt>tpl</dt>
+	<dd>The string to be used.</dd>
+</dl>
+
+----
+
+### tplById
+
+#### Syntax
+
+_tp_.tplById ( _id_, _async_ )
+
+#### Summary
+
+Sets the template string, based on an element's content and returns the instance of Teepee. If the element is a script tag with a src attribute, the local source will be used.
+
+#### Parameters
+
+<dl>
+	<dt>id</dt>
+	<dd>The id of the element.</dd>
+	<dt>async</dt>
+	<dd>The optional boolean of whether to load the template asynchronously.  Defaults true.</dd>
+</dl>
+
+----
+
+### use
+
+#### Syntax
+
+_tp_.use ( _use_ )
+
+#### Summary
+
+Sets the object to be used by the template and returns the instance of Teepee. If nothing is passed, the current object is returned.
+
+#### Parameters
+
+<dl>
+	<dt>use</dt>
+	<dd>The object to be used.</dd>
+</dl>
+
+----
+
+### render
+
+#### Syntax
+
+_tp_.render
+
+_tp_.render ( _tpl_ , _use_ )
+
+#### Summary
+
+Returns the rendered template.
+
+#### Parameters
+
+<dl>
+	<dt>tpl</dt>
+	<dd>The optional string of the template. Defaults to the stored string.</dd>
+	<dt>use</dt>
+	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
+</dl>
+
+----
+
+### write
+
+#### Syntax
+
+_tp_.write ( _tpl_ , _use_ )
+
+#### Summary
+
+Writes the rendered template to the document and returns the instance of Teepee.
+
+#### Parameters
+
+<dl>
+	<dt>tpl</dt>
+	<dd>The optional string of the template. Defaults to the stored string.</dd>
+	<dt>use</dt>
+	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
+</dl>
+
+----
+
+### writeCSS
+
+#### Syntax
+
+_tp_.writeCSS ( _tpl_ , _use_ )
+
+#### Summary
+
+Writes the rendered template to a style element in the document and returns the instance of Teepee.
+#### Parameters
+
+<dl>
+	<dt>tpl</dt>
+	<dd>The optional string of the template. Defaults to the stored string.</dd>
+	<dt>use</dt>
+	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
+</dl>
+
+----
+
+
+## Contributing
 
 1. Fork it.
 2. Create a branch (`git checkout -b my_teepee`)
