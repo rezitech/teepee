@@ -117,7 +117,6 @@ You can even use external templates in &lt;script&gt; tags to make your page as 
 
 Teepee's filled with functionality that will allow you to start developing immediately.
 
----
 
 ### Creating a new instance
 
@@ -125,7 +124,6 @@ Teepee's filled with functionality that will allow you to start developing immed
 
 _tp_ = new Teepee()
 
-----
 
 ### opener
 
@@ -145,7 +143,6 @@ Sets the opening character(s) of Teepee code and returns the instance of Teepee.
 	<dd>The character(s) to be used.</dd>
 </dl>
 
-----
 
 ### closer
 
@@ -165,7 +162,6 @@ Sets the closing character(s) of Teepee code and returns the instance of Teepee.
 	<dd>The character(s) to be used.</dd>
 </dl>
 
-----
 
 ### iffer
 
@@ -185,7 +181,6 @@ Sets the character(s) used to begin an IF statement and returns the instance of 
 	<dd>The character(s) to be used.</dd>
 </dl>
 
-----
 
 ### closer
 
@@ -205,7 +200,6 @@ Sets the character(s) used to begin an IF NOT statement and returns the instance
 	<dd>The character(s) to be used.</dd>
 </dl>
 
-----
 
 ### looper
 
@@ -225,7 +219,6 @@ Sets the character(s) used to begin a FOR statement and returns the instance of 
 	<dd>The character(s) to be used.</dd>
 </dl>
 
-----
 
 ### printer
 
@@ -245,7 +238,6 @@ Sets the character(s) used to print a variable and returns the instance of Teepe
 	<dd>The character(s) to be used.</dd>
 </dl>
 
-----
 
 ### tpl
 
@@ -264,7 +256,6 @@ Assigns the template string and returns the instance of Teepee. If nothing is pa
 	<dd>The string to be used.</dd>
 </dl>
 
-----
 
 ### tplById
 
@@ -285,7 +276,6 @@ Sets the template string, based on an element's content and returns the instance
 	<dd>The optional boolean of whether to load the template asynchronously.  Defaults true.</dd>
 </dl>
 
-----
 
 ### use
 
@@ -304,7 +294,6 @@ Sets the object to be used by the template and returns the instance of Teepee. I
 	<dd>The object to be used.</dd>
 </dl>
 
-----
 
 ### render
 
@@ -327,7 +316,6 @@ Returns the rendered template.
 	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
 </dl>
 
-----
 
 ### write
 
@@ -348,7 +336,6 @@ Writes the rendered template to the document and returns the instance of Teepee.
 	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
 </dl>
 
-----
 
 ### writeCSS
 
@@ -367,8 +354,6 @@ Writes the rendered template to a style element in the document and returns the 
 	<dt>use</dt>
 	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
 </dl>
-
-----
 
 
 ## Contributing
