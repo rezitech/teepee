@@ -5,7 +5,7 @@ Teepee is a templating system for JavaScript, ideal for creating websites, webap
 
 ## Using Teepee
 
-To use Teepee, include this script anywhere in your page. You can even hotlink to the latest Teepee (well, you can't in IE9). Woot ('cept for IE9)!
+To use Teepee, include this script anywhere in your page. Woot!
 
 ```html
 <script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
