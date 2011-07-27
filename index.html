@@ -36,6 +36,25 @@
 						<div class="codeblock">
 <pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//raw.github.com/rezitech/teepee/master/teepee.js"</span><span class="nt">&gt;&lt;/script&gt;</span></pre>
 						</div>
+						<h3>
+							Example: Hello World
+						</h3>
+						<p>
+							Teepee syntax is both easy to use, and completely customizable. By default, Teepee's syntax is like that of Mustache, an absolutely fantastic markup language (which is itself based on CTemplate). Awesome!
+						</p>
+						<div class="highlight">
+<pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//raw.github.com/rezitech/teepee/master/teepee.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+    <span class="kd">var</span> <span class="nx">tp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Teepee</span><span class="p">();</span>
+    <span class="nx">tp</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span>
+        <span class="s1">'Hello, {{=who}}!'</span><span class="p">,</span>
+        <span class="p">{</span> <span class="nx">who</span><span class="o">:</span> <span class="s1">'World'</span> <span class="p">}</span>
+    <span class="p">);</span> <span class="c1">// prints "Hello, World!"</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre>
+						</div>
 					</div>
 				</div>
 				<div class="doc-foot">
