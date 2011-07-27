@@ -122,15 +122,20 @@ Teepee's filled with functionality that will allow you to start developing immed
 
 #### Syntax
 
+```javascript
 _tp_ = new Teepee()
+```
 
+----
 
 ### opener
 
 #### Syntax
 
+```javascript
 _tp_.opener
 _tp_.opener ( _chars_ )
+```
 
 #### Summary
 
@@ -143,13 +148,16 @@ Sets the opening character(s) of Teepee code and returns the instance of Teepee.
 	<dd>The character(s) to be used.</dd>
 </dl>
 
+----
 
 ### closer
 
 #### Syntax
 
+```javascript
 _tp_.closer
 _tp_.closer ( _chars_ )
+```
 
 #### Summary
 
@@ -162,13 +170,16 @@ Sets the closing character(s) of Teepee code and returns the instance of Teepee.
 	<dd>The character(s) to be used.</dd>
 </dl>
 
+----
 
 ### iffer
 
 #### Syntax
 
+```javascript
 _tp_.iffer
 _tp_.iffer ( _chars_ )
+```
 
 #### Summary
 
@@ -181,13 +192,16 @@ Sets the character(s) used to begin an IF statement and returns the instance of 
 	<dd>The character(s) to be used.</dd>
 </dl>
 
+----
 
 ### closer
 
 #### Syntax
 
+```javascript
 _tp_.notter
 _tp_.notter ( _chars_ )
+```
 
 #### Summary
 
@@ -200,13 +214,16 @@ Sets the character(s) used to begin an IF NOT statement and returns the instance
 	<dd>The character(s) to be used.</dd>
 </dl>
 
+----
 
 ### looper
 
 #### Syntax
 
+```javascript
 _tp_.looper
 _tp_.looper ( _chars_ )
+```
 
 #### Summary
 
@@ -219,13 +236,16 @@ Sets the character(s) used to begin a FOR statement and returns the instance of 
 	<dd>The character(s) to be used.</dd>
 </dl>
 
+----
 
 ### printer
 
 #### Syntax
 
+```javascript
 _tp_.printer
 _tp_.printer ( _chars_ )
+```
 
 #### Summary
 
@@ -238,12 +258,15 @@ Sets the character(s) used to print a variable and returns the instance of Teepe
 	<dd>The character(s) to be used.</dd>
 </dl>
 
+----
 
 ### tpl
 
 #### Syntax
 
+```javascript
 _tp_.tpl ( _tpl_ )
+```
 
 #### Summary
 
@@ -256,12 +279,15 @@ Assigns the template string and returns the instance of Teepee. If nothing is pa
 	<dd>The string to be used.</dd>
 </dl>
 
+----
 
 ### tplById
 
 #### Syntax
 
+```javascript
 _tp_.tplById ( _id_, _async_ )
+```
 
 #### Summary
 
@@ -276,12 +302,15 @@ Sets the template string, based on an element's content and returns the instance
 	<dd>The optional boolean of whether to load the template asynchronously.  Defaults true.</dd>
 </dl>
 
+----
 
 ### use
 
 #### Syntax
 
+```javascript
 _tp_.use ( _use_ )
+```
 
 #### Summary
 
@@ -294,13 +323,16 @@ Sets the object to be used by the template and returns the instance of Teepee. I
 	<dd>The object to be used.</dd>
 </dl>
 
+----
 
 ### render
 
 #### Syntax
 
+```javascript
 _tp_.render
 _tp_.render ( _tpl_ , _use_ )
+```
 
 #### Summary
 
@@ -315,12 +347,15 @@ Returns the rendered template.
 	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
 </dl>
 
+----
 
 ### write
 
 #### Syntax
 
+```javascript
 _tp_.write ( _tpl_ , _use_ )
+```
 
 #### Summary
 
@@ -335,16 +370,20 @@ Writes the rendered template to the document and returns the instance of Teepee.
 	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
 </dl>
 
+----
 
 ### writeCSS
 
 #### Syntax
 
+```javascript
 _tp_.writeCSS ( _tpl_ , _use_ )
+```
 
 #### Summary
 
 Writes the rendered template to a style element in the document and returns the instance of Teepee.
+
 #### Parameters
 
 <dl>
@@ -353,6 +392,8 @@ Writes the rendered template to a style element in the document and returns the 
 	<dt>use</dt>
 	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
 </dl>
+
+----
 
 
 ## Contributing
