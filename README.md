@@ -92,7 +92,7 @@ You can even use templates in &lt;script&gt; tags to make your entire page. Swee
 ```html
 <body>
 	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-	<script id="demo-template" type="text/x-tpl">
+	<script id="demo-template" type="text/html">
 	<h1>
 		{{=pageTitle}}
 	</h1>
@@ -117,7 +117,7 @@ You can even use external templates in &lt;script&gt; tags to make your page as 
 ```html
 <body>
 	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-	<script src="demo-advanced.tpl.html" id="demo-html" type="text/x-tpl">
+	<script src="demo-advanced.tpl.html" id="demo-html" type="text/html">
 		<-- Contents of "demo-advanced.tpl.html" -->
 		<h1>
 			{{=pageTitle}}
@@ -132,7 +132,7 @@ You can even use external templates in &lt;script&gt; tags to make your page as 
 			</ul>
 		</nav>
 	</script>
-	<script src="demo-advanced.tpl.css" id="demo-css" type="text/x-tpl">
+	<script src="demo-advanced.tpl.css" id="demo-css" type="text/css">
 		/* Contents of "demo-advanced.tpl.css" */
 		body {
 			background: {{=pageBackgroundColor}};
