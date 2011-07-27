@@ -371,6 +371,8 @@ Writes the rendered template to the document and returns the instance of Teepee.
 	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
 </dl>
 
+----
+
 ### writeCSS
 
 #### Syntax
@@ -391,8 +393,6 @@ Writes the rendered template to a style element in the document and returns the 
 	<dt>use</dt>
 	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
 </dl>
-
-----
 
 
 ## Contributing
