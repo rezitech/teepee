@@ -42,7 +42,7 @@
 						(new RegExp('^('+
 						escapeRegExp(storage.iffer)+'|'+
 						escapeRegExp(storage.notter)+'|'+
-						escapeRegExp(storage.loopChar)+
+						escapeRegExp(storage.looper)+
 						')$')
 					).test(e[0])) {
 						var
@@ -88,7 +88,7 @@
 					// if not
 					else if (chr === storage.notter && !isPositive(varValue)) html += callee(e.children, obj);
 					// loop
-					else if (chr === storage.loopChar && isPositive(varValue)) {
+					else if (chr === storage.looper && isPositive(varValue)) {
 						ei = -1;
 						eo = {};
 						while ((eo[varName] = varValue[++ei]) !== undefined) html += callee(e.children, eo);
@@ -105,7 +105,7 @@
 		storage = {
 			closer: '}}',
 			iffer: '?',
-			loopChar: '#',
+			looper: '#',
 			notter: '!',
 			opener: '{{',
 			printer: '=',
