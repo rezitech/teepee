@@ -1,13 +1,13 @@
 Teepee
 ======
 
-Teepee is a templating language for JavaScript, ideal for creating websites, webapps, or anything else - quickly. Teepee is stable, fast, easy, and even lets you control the syntax (and all of this in less than 1KB).
+Teepee is a templating language for JavaScript, ideal for creating websites, webapps, or anything else - quickly. Teepee is stable, fast, easy, and even lets you control the syntax (and all of this in 1KB).
 
 
 Using Teepee
 ------------
 
-To use Teepee, include this script anywhere in your page. You can even hotlink to the latest Teepee.
+To use Teepee, include this script anywhere in your page. You can even hotlink to the latest Teepee. Woot!
 
 	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
 
@@ -123,7 +123,7 @@ Contributing
 3. Commit your changes (`git commit -am "Added Awesomeness"`)
 4. Push to the branch (`git push origin my_teepee`)
 5. Create an [Issue][1] with a link to your branch
-6. Enjoy a refreshing Diet Coke and wait
+6. Enjoy a refreshing Coca Cola Classic (you earned it!) and wait
 
 [1]: //github.com/rezitech/teepee/issues
 [mustache]: http://mustache.github.com/
