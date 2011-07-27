@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 /*! Teepee v1.0.1 MIT/GPL2 @rezitech */
->>>>>>> master
 (function (doc) {
 	// return whether a value is worth displaying IMHO
 	function isPositive (val) {
