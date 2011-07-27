@@ -129,6 +129,14 @@
 		};
 		instance.iffer.toString = instance.iffer;
 		//
+		// get/set the loop character(s)
+		instance.looper = function (str) {
+			if (str === undefined) return storage.looper;
+			storage.looper = String(str);
+			return instance;
+		};
+		instance.iffer.toString = instance.iffer;
+		//
 		// get/set the if not character(s)
 		instance.notter = function (str) {
 			if (str === undefined) return storage.notter;
@@ -159,7 +167,6 @@
 			storage.tpl = String(str);
 			return instance;
 		};
-		instance.tpl.toString = instance.tpl;
 		//
 		// set the template string by document id
 		instance.tplById = function (id, bool) {
@@ -193,6 +200,7 @@
 		// write a rendered template to the document
 		instance.write = function (tpl, use) {
 			doc.write(instance.render(tpl, use));
+			return instance;
 		};
 		//
 		// append a rendered template to the document as a style
