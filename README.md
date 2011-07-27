@@ -451,6 +451,15 @@ Writes the rendered template to a style element in the document and returns the 
 </dl>
 
 
+## Licensing
+
+Teepee uses a dual [MIT][mit]/[GPL2][gpl] license. The MIT License is recommended for most projects. It is simple and easy to understand and it places almost no restrictions on what you can do with Teepee.
+
+If the GPL suits your project better you are also free to use Teepee under that license.
+
+You don't have to do anything special to choose one license or the other and you don't have to notify anyone which license you are using. You are free to use Teepee in commercial projects as long as the copyright header is left intact.
+
+
 ## Contributing
 
 1. Fork it.
@@ -465,3 +474,5 @@ Writes the rendered template to a style element in the document and returns the 
 [ctemplate]: //code.google.com/p/google-ctemplate/
 [jquery]: http://jquery.com
 [sass]: http://sass-lang.com/
+[MIT]: http://www.opensource.org/licenses/MIT
+[GPL]: http://www.opensource.org/licenses/GPL-2.0

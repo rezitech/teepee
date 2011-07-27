@@ -1,3 +1,4 @@
+/*! Teepee v1.0.1 MIT/GPL2 @rezitech */
 (function (doc) {
 	// return whether a value is worth displaying IMHO
 	function isPositive (val) {
