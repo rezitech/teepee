@@ -95,7 +95,7 @@ You can even use external templates in &lt;script&gt; tags to make your page as 
 		</script>
 		<script>
 		demoObject = {
-			pageTitle: 'Home',
+			pageTitle: 'My HTML5 1997 Website',
 			pageNavigation: [
 				{ href: '#uno', title: 'One' },
 				{ href: '#dos', title: 'Two' },
