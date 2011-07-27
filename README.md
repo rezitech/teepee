@@ -16,7 +16,10 @@ Teepee syntax is both easy to use, and completely customizable. By default, Teep
 
 	<body>
 		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-		<script>var tp = new Teepee(); tp.write('Hello, {{=who}}!', { who: 'World' }); // prints "Hello, World!"</script>
+		<script>
+		var tp = new Teepee();
+		tp.write('Hello, {{=who}}!', { who: 'World' }); // prints "Hello, World!"
+		</script>
 	</body>
 
 
@@ -26,7 +29,12 @@ Use simplified IF and IF NOT statements in your templates for even more dynamic 
 
 	<body>
 		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-		<script>var tp = new Teepee(); tp.write('Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!', { isMars: false, isEarth: true }); // prints "Hello, Earth!"</script>
+		<script>
+		var tp = new Teepee();
+		tp.write(
+			'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
+			{ isMars: false, isEarth: true }
+		); // prints "Hello, Earth!"</script>
 	</body>
 
 
@@ -36,7 +44,12 @@ Use a simplified loop statement in your templates to loop through an array. Uhuh
 
 	<body>
 		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-		<script>var tp = new Teepee(); tp.write('Ask these questions:{{#q}} {{=q}}{{/q}}.', { q: ['Who', 'What', 'Where', 'When', 'Why'] }); // prints "Ask these questions: Who What Where When Why."</script>
+		<script>
+		var tp = new Teepee();
+		tp.write(
+			'Ask these questions:{{#q}} {{=q}}{{/q}}.',
+			{ q: ['Who', 'What', 'Where', 'When', 'Why'] }
+		); // prints "Ask these questions: Who What Where When Why."</script>
 	</body>
 
 
