@@ -1,9 +1,0 @@
-body {
-	background: {{=pageBackgroundColor}};
-	color: {{=pageTextColor}};
-}
-
-a {
-	color: {{=pageTextColor}};
-	text-decoration: none;
-}
