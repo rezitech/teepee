@@ -28,7 +28,7 @@ Teepee syntax is both easy to use, and completely customizable. By default, Teep
 </body>
 ```
 
-### Example: If and If Not
+### Examples: If and If Not
 
 Use simplified IF and IF NOT statements in your templates for even more dynamic control. Oh yea!
 
@@ -41,6 +41,10 @@ Use simplified IF and IF NOT statements in your templates for even more dynamic 
 		'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
 		{ isMars: false, isEarth: true }
 	); // prints "Hello, Earth!"
+	tp.write(
+		'Hello{{?person === "Dolly"}}, {{=person}}{{/person}}!',
+		{ person: "Dolly" }
+	); // prints "Hello, Dolly!"
 	</script>
 </body>
 ```
@@ -64,7 +68,7 @@ Use a simplified loop statement in your templates to loop through an array. Uhuh
 ```
 
 
-### Example: Syntax Mod
+### Example: Syntax modification
 
 You can change Teepee's syntax to your heart's content. Yay!
 
@@ -85,7 +89,7 @@ You can change Teepee's syntax to your heart's content. Yay!
 That's right, you may have noticed that most functions in Teepee are chainable (like [jQuery][jquery]). Nice!
 
 
-### Examples: Script Tag
+### Examples: Script tags
 
 You can even use templates in &lt;script&gt; tags to make your entire page. Sweet!
 
