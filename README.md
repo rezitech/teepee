@@ -1,20 +1,20 @@
 Teepee
 ======
 
-Teepee is a templating language for JavaScript, ideal for creating websites, webapps, or anything else - quickly. Teepee is stable, fast, easy, and even lets you control the syntax (and all of this in 1KB).
+Teepee is a templating system for JavaScript, ideal for creating websites, webapps, or anything else - quickly. Teepee is stable, fast, easy, and even lets you control the syntax (and all of this in 1KB).
 
 
 Using Teepee
 ------------
 
-To use Teepee, include this script anywhere in your page. You can even hotlink to the latest Teepee. Woot!
+To use Teepee, include this script anywhere in your page. You can even hotlink to the latest Teepee (well, you can't in IE9). Woot ('cept for IE9)!
 
 	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
 
 
 ### Hello World Example
 
-Teepee syntax is both easy to use, and completely customizable. By default, Teepee's syntax is like that of [Mustache][mustache], another absolutely fantastic markup language (which is itself based on [CTemplate][ctemplate]). Awesome!
+Teepee syntax is both easy to use, and completely customizable. By default, Teepee's syntax is like that of [Mustache][mustache], an absolutely fantastic markup language (which is itself based on [CTemplate][ctemplate]). Awesome!
 
 	<body>
 		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
