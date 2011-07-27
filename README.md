@@ -300,7 +300,6 @@ Sets the object to be used by the template and returns the instance of Teepee. I
 #### Syntax
 
 _tp_.render
-
 _tp_.render ( _tpl_ , _use_ )
 
 #### Summary
