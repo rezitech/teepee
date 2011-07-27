@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Teepee Demo</title>
+	</head>
+	<body>
+		<script src="teepee.js"></script>
+		<script src="demo-advanced.tpl.html" id="demo-html" type="text/html"></script>
+		<script src="demo-advanced.tpl.css" id="demo-css" type="text/css"></script>
+		<script>
+		demoObject = {
+			pageTitle: 'My HTML5 1997 Website',
+			pageNavigation: [
+				{ href: '#uno', title: 'One' },
+				{ href: '#dos', title: 'Two' },
+				{ href: '#tres', title: 'Three' },
+				{ href: '#cuatro', title: 'Four' },
+				{ href: '#cinco', title: 'Five' },
+			],
+			pageBackgroundColor: '#444',
+			pageTextColor: '#FFF'
+		};
+		</script>
+		<script>
+		var tp = new Teepee();
+		tp.use(demoObject);
+		tp.tplById('demo-css', false).writeCSS().tplById('demo-html', false).write();
+		</script>
+	</body>
+</html>

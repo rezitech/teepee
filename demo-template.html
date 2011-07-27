@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Teepee Demo: Template</title>
+	</head>
+	<body>
+		<script src="teepee.js"></script>
+		<script id="demo-template" type="text/x-tpl">
+		<h1>
+			{{=pageTitle}}
+		</h1>
+		<p>
+			{{=pageDescription}}
+		</p>
+		</script>
+		<script>
+		demoObject = {
+			pageTitle: 'My 1997 Website',
+			pageDescription: 'Hello and welcome to my awesome website.'
+		};
+		tp = new Teepee();
+		tp.tplById('demo-template').use(demoObject).write();
+		</script>
+	</body>
+</html>
