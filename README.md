@@ -79,7 +79,7 @@ You can even use external templates in &lt;script&gt; tags to make your page as 
 						<a href="{{=pageNavigation.href}}">{{=pageNavigation.title}}</a>
 					</li>
 					{{/pageNavigation}}
-				</Ul>
+				</ul>
 			</nav>
 		</script>
 		<script src="demo-advanced.tpl.css" id="demo-css" type="text/x-tpl">
