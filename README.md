@@ -40,7 +40,8 @@ Use simplified IF and IF NOT statements in your templates for even more dynamic 
 	tp.write(
 		'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
 		{ isMars: false, isEarth: true }
-	); // prints "Hello, Earth!"</script>
+	); // prints "Hello, Earth!"
+	</script>
 </body>
 ```
 
@@ -57,7 +58,8 @@ Use a simplified loop statement in your templates to loop through an array. Uhuh
 	tp.write(
 		'Ask these questions:{{#q}} {{=q}}{{/q}}.',
 		{ q: ['Who', 'What', 'Where', 'When', 'Why'] }
-	); // prints "Ask these questions: Who What Where When Why."</script>
+	); // prints "Ask these questions: Who What Where When Why."
+	</script>
 </body>
 ```
 
