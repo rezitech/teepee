@@ -14,57 +14,64 @@ To use Teepee, include this script anywhere in your page. You can even hotlink t
 
 Teepee syntax is both easy to use, and completely customizable. By default, Teepee's syntax is like that of [Mustache][mustache], an absolutely fantastic markup language (which is itself based on [CTemplate][ctemplate]). Awesome!
 
-	<body>
-		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-		<script>
-		var tp = new Teepee();
-		tp.write('Hello, {{=who}}!', { who: 'World' }); // prints "Hello, World!"
-		</script>
-	</body>
-
+```html
+<body>
+	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
+	<script>
+	var tp = new Teepee();
+	tp.write('Hello, {{=who}}!', { who: 'World' }); // prints "Hello, World!"
+	</script>
+</body>
+```
 
 ### Example: If and If Not
 
 Use simplified IF and IF NOT statements in your templates for even more dynamic control. Oh yea!
 
-	<body>
-		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-		<script>
-		var tp = new Teepee();
-		tp.write(
-			'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
-			{ isMars: false, isEarth: true }
-		); // prints "Hello, Earth!"</script>
-	</body>
+```html
+<body>
+	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
+	<script>
+	var tp = new Teepee();
+	tp.write(
+		'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
+		{ isMars: false, isEarth: true }
+	); // prints "Hello, Earth!"</script>
+</body>
+```
 
 
 ### Example: Looping
 
 Use a simplified loop statement in your templates to loop through an array. Uhuh uhuh uhuh!
 
-	<body>
-		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-		<script>
-		var tp = new Teepee();
-		tp.write(
-			'Ask these questions:{{#q}} {{=q}}{{/q}}.',
-			{ q: ['Who', 'What', 'Where', 'When', 'Why'] }
-		); // prints "Ask these questions: Who What Where When Why."</script>
-	</body>
+```html
+<body>
+	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
+	<script>
+	var tp = new Teepee();
+	tp.write(
+		'Ask these questions:{{#q}} {{=q}}{{/q}}.',
+		{ q: ['Who', 'What', 'Where', 'When', 'Why'] }
+	); // prints "Ask these questions: Who What Where When Why."</script>
+</body>
+```
 
 
 ### Example: Syntax Mod
 
 You can change Teepee's syntax to your heart's content. Yay!
 
-	<body>
-		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-		<script>
-		var t = new Teepee();
-		t.opener('@').closer('@').printer('$');
-		t.write('The quick @$animal@ jumps over the lazy dog.', { animal: 'brown fox' });
-		</script>
-	</body>
+```html
+<body>
+	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
+	<script>
+	var t = new Teepee();
+	t.opener('@').closer('@').printer('$');
+	t.write('The quick @$animal@ jumps over the lazy dog.', { animal: 'brown fox' });
+	</script>
+</body>
+```
 
 That's right, you may have noticed that most functions in Teepee are chainable (like [jQuery][jquery]). Nice!
 
@@ -73,78 +80,81 @@ That's right, you may have noticed that most functions in Teepee are chainable (
 
 You can even use templates in &lt;script&gt; tags to make your entire page. Sweet!
 
-	<body>
-		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-		<script id="demo-template" type="text/x-tpl">
-		<h1>
-			{{=pageTitle}}
-		</h1>
-		<p>
-			{{=pageDescription}}
-		</p>
-		</script>
-		<script>
-		demoObject = {
-			pageTitle: 'My 1997 Website',
-			pageDescription: 'Hello and welcome to my awesome website.'
-		};
-		tp = new Teepee();
-		tp.tplById('demo-template').use(demoObject).write();
-		</script>
-	</body>
+```html
+<body>
+	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
+	<script id="demo-template" type="text/x-tpl">
+	<h1>
+		{{=pageTitle}}
+	</h1>
+	<p>
+		{{=pageDescription}}
+	</p>
+	</script>
+	<script>
+	demoObject = {
+		pageTitle: 'My 1997 Website',
+		pageDescription: 'Hello and welcome to my awesome website.'
+	};
+	tp = new Teepee();
+	tp.tplById('demo-template').use(demoObject).write();
+	</script>
+</body>
+```
 
 
 You can even use external templates in &lt;script&gt; tags to make your page as well as style it [Sass][sass]-style. Nifty!
 
-	<body>
-		<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-		<script src="demo-advanced.tpl.html" id="demo-html" type="text/x-tpl">
-			<-- Contents of "demo-advanced.tpl.html" -->
-			<h1>
-				{{=pageTitle}}
-			</h1>
-			<nav>
-				<ul>
-					{{#pageNavigation}}
-					<li>
-						<a href="{{=pageNavigation.href}}">{{=pageNavigation.title}}</a>
-					</li>
-					{{/pageNavigation}}
-				</ul>
-			</nav>
-		</script>
-		<script src="demo-advanced.tpl.css" id="demo-css" type="text/x-tpl">
-			/* Contents of "demo-advanced.tpl.css" */
-			body {
-				background: {{=pageBackgroundColor}};
-				color: {{=pageTextColor}};
-			}
-			a {
-				color: {{=pageTextColor}};
-				text-decoration: none;
-			}
-		</script>
-		<script>
-		demoObject = {
-			pageTitle: 'My HTML5 1997 Website',
-			pageNavigation: [
-				{ href: '#uno', title: 'One' },
-				{ href: '#dos', title: 'Two' },
-				{ href: '#tres', title: 'Three' },
-				{ href: '#cuatro', title: 'Four' },
-				{ href: '#cinco', title: 'Five' },
-			],
-			pageBackgroundColor: '#444',
-			pageTextColor: '#FFF'
-		};
-		</script>
-		<script>
-		var tp = new Teepee();
-		tp.use(demoObject);
-		tp.tplById('demo-css', false).writeCSS().tplById('demo-html', false).write();
-		</script>
-	</body>
-
+```html
+<body>
+	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
+	<script src="demo-advanced.tpl.html" id="demo-html" type="text/x-tpl">
+		<-- Contents of "demo-advanced.tpl.html" -->
+		<h1>
+			{{=pageTitle}}
+		</h1>
+		<nav>
+			<ul>
+				{{#pageNavigation}}
+				<li>
+					<a href="{{=pageNavigation.href}}">{{=pageNavigation.title}}</a>
+				</li>
+				{{/pageNavigation}}
+			</ul>
+		</nav>
+	</script>
+	<script src="demo-advanced.tpl.css" id="demo-css" type="text/x-tpl">
+		/* Contents of "demo-advanced.tpl.css" */
+		body {
+			background: {{=pageBackgroundColor}};
+			color: {{=pageTextColor}};
+		}
+		a {
+			color: {{=pageTextColor}};
+			text-decoration: none;
+		}
+	</script>
+	<script>
+	demoObject = {
+		pageTitle: 'My HTML5 1997 Website',
+		pageNavigation: [
+			{ href: '#uno', title: 'One' },
+			{ href: '#dos', title: 'Two' },
+			{ href: '#tres', title: 'Three' },
+			{ href: '#cuatro', title: 'Four' },
+			{ href: '#cinco', title: 'Five' },
+		],
+		pageBackgroundColor: '#444',
+		pageTextColor: '#FFF'
+	};
+	</script>
+	<script>
+	var tp = new Teepee();
+	tp.use(demoObject);
+	tp.tplById('demo-css', false).writeCSS().tplById('demo-html', false).write();
+	</script>
+</body>
+```
 
 ## Features
 
