@@ -117,6 +117,7 @@ You can even use external templates in &lt;script&gt; tags to make your page as 
 
 Teepee's filled with functionality that will allow you to start developing immediately.
 
+----
 
 ### Creating a new instance
 
@@ -369,8 +370,6 @@ Writes the rendered template to the document and returns the instance of Teepee.
 	<dt>use</dt>
 	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
 </dl>
-
-----
 
 ### writeCSS
 
