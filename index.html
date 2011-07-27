@@ -42,7 +42,7 @@
 						<p>
 							Teepee syntax is both easy to use, and completely customizable. By default, Teepee's syntax is like that of Mustache, an absolutely fantastic markup language (which is itself based on CTemplate). Awesome!
 						</p>
-						<div class="highlight">
+						<div class="codeblock">
 <pre><span class="nt">&lt;body&gt;</span>
     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//raw.github.com/rezitech/teepee/master/teepee.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
     <span class="nt">&lt;script&gt;</span>
@@ -51,6 +51,25 @@
         <span class="s1">'Hello, {{=who}}!'</span><span class="p">,</span>
         <span class="p">{</span> <span class="nx">who</span><span class="o">:</span> <span class="s1">'World'</span> <span class="p">}</span>
     <span class="p">);</span> <span class="c1">// prints "Hello, World!"</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre>
+						</div>
+						<h3>
+							Examples: If and If Not
+						</h3>
+						<p>
+							Use simplified IF and IF NOT statements in your templates for even more dynamic control. Oh yea!
+						</p>
+						<div class="codeblock">
+<pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//raw.github.com/rezitech/teepee/master/teepee.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+    <span class="kd">var</span> <span class="nx">tp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Teepee</span><span class="p">();</span>
+    <span class="nx">tp</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span>
+        <span class="s1">'Ask these questions:{{#q}} {{=q}}{{/q}}.'</span><span class="p">,</span>
+        <span class="p">{</span> <span class="nx">q</span><span class="o">:</span> <span class="p">[</span><span class="s1">'Who'</span><span class="p">,</span> <span class="s1">'What'</span><span class="p">,</span> <span class="s1">'Where'</span><span class="p">,</span> <span class="s1">'When'</span><span class="p">,</span> <span class="s1">'Why'</span><span class="p">]</span> <span class="p">}</span>
+    <span class="p">);</span> <span class="c1">// prints "Ask these questions: Who What Where When Why."</span>
     <span class="nt">&lt;/script&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
 </pre>
