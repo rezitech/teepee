@@ -14,9 +14,11 @@ dl, ol, ul {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	line-height: 1.2;
+	line-height: 1.1;
 	margin: 1.5em 0;
 }
+
+li { line-height: 1.2; }
 
 h1 { font-size: 2.5em; }
 
@@ -37,10 +39,12 @@ a:active, a:focus, a:hover { text-decoration: underline; }
 	padding-top: 0.5em;
 }
 
+.doc-head, .doc-body, .doc-foot { padding: 0 20px; }
+
 .doc-head-content, .doc-body-content, .doc-foot-content {
 	margin: 0 auto;
+	max-width: 860px;
 	padding: 20px;
-	width: 860px;
 }
 
 .doc-head {
@@ -52,7 +56,7 @@ a:active, a:focus, a:hover { text-decoration: underline; }
 	background-image: -webkit-linear-gradient(top, #FFF, #F5F5F5);
 	background-image:         linear-gradient(top, #FFF, #F5F5F5);
 	border-bottom: 1px solid #DFDFDF;
-	padding: 0 20px 29px;
+	padding-bottom: 29px;
 }
 
 .doc-body-content {
@@ -85,7 +89,7 @@ nav a {
 }
 
 .codeblock { position: relative; }
-.codeblock .open { font-size: 75%; position: absolute; right: 0.5em; top: 0.25em; }
+.codeblock .open { background: #FCFCFC; border: 1px solid #EEE; border-radius: 0.5em; font-size: 75%; padding: 0.25em 0.5em; position: absolute; right: 0.5em; top: 0.5em; }
 pre, pre code { font: 75% 'Bitstream Vera Sans Mono', 'Courier', monospace; }
 pre {
 	background: #F9F9F9;
