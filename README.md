@@ -1,476 +1,321 @@
 # Teepee
 
-Teepee is a templating system for JavaScript, ideal for creating websites, webapps, or anything else - quickly. Teepee is stable, fast, easy, and even lets you control the syntax (and all of this in 1KB).
+Teepee is a templating system for JavaScript, ideal for creating websites, webapps, or anything else. Teepee is fast, stable, easy to use, and even lets you control the syntax (and all of this in 1KB).
 
 
-## Using Teepee
+## Download
 
-To use Teepee, include this script anywhere in your page. Woot!
+[Download teepee.js][teepee.js] or [get the latest release at GitHub][github].
+
+
+## Examples
+
+To use Teepee, include this script anywhere in your page.
 
 ```html
-<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
+<script src="//rezitech.github.com/teepee/teepee.js"></script>
 ```
 
-### Example: Hello World
+### Hello World
 
-Teepee syntax is both easy to use, and completely customizable. By default, Teepee's syntax is like that of [Mustache][mustache], an absolutely fantastic markup language (which is itself based on [CTemplate][ctemplate]). Awesome!
+Teepee syntax is easy to use and completely customizable.
 
 ```html
-<body>
-	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-	<script>
-	var tp = new Teepee();
-	tp.write(
-		'Hello, {{=who}}!',
-		{ who: 'World' }
-	); // prints "Hello, World!"
-	</script>
-</body>
+<script>
+teepee().write(
+	'Hello, {{=who}}!',
+	{ who: 'World' }
+); // writes "Hello, World!"
+</script>
 ```
 
-### Examples: If and If Not
+### If and If Not
 
-Use simplified IF and IF NOT statements in your templates for even more dynamic control. Oh yea!
-
-```html
-<body>
-	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-	<script>
-	var tp = new Teepee();
-	tp.write(
-		'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
-		{ isMars: false, isEarth: true }
-	); // prints "Hello, Earth!"
-	tp.write(
-		'Hello{{?person === "Dolly"}}, {{=person}}{{/person}}!',
-		{ person: "Dolly" }
-	); // prints "Hello, Dolly!"
-	</script>
-</body>
-```
-
-
-### Example: Looping
-
-Use a simplified loop statement in your templates to loop through an array. Yea Yea Yea!
+Use simplified IF and IF NOT statements to control output.
 
 ```html
-<body>
-	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-	<script>
-	var tp = new Teepee();
-	tp.write(
-		'Ask these questions:{{#q}} {{=q}}{{/q}}.',
-		{ q: ['Who', 'What', 'Where', 'When', 'Why'] }
-	); // prints "Ask these questions: Who What Where When Why."
-	</script>
-</body>
+<script>
+teepee().write(
+	'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
+	{ isMars: false, isEarth: true }
+); // writes "Hello, Earth!"
+
+teepee().write(
+	'Hello{{?person === "Dolly"}}, {{=person}}{{/person}}!',
+	{ person: 'Dolly' }
+); // writes "Hello, Dolly!"
+</script>
 ```
 
 
-### Example: Syntax modification
+### Looping
 
-You can change Teepee's syntax to your heart's content. Yay!
+Use a simplified loop statement to parse an array.
 
 ```html
-<body>
-	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-	<script>
-	var t = new Teepee();
-	t.opener('@').closer('@').printer('$');
-	t.write(
+<script>
+teepee().write(
+	'Ask these questions:{{#q}} {{=q}}{{/q}}.',
+	{ q: ['Who', 'What', 'Where', 'When', 'Why'] }
+); // writes "Ask these questions: Who What Where When Why."
+</script>
+```
+
+
+### Syntax modification
+
+Customize the syntax to your heart's content.
+
+```html
+<script>
+teepee()
+	.opener('@')
+	.closer('@')
+	.writer('$')
+	.write(
 		'The quick @$jumper@ jumps over the @$jumpee@.',
 		{ jumper: 'brown fox', jumpee: 'lazy dog' }
-	); // prints "The quick brown fox jumps over the lazy dog."
-	</script>
-</body>
+	); // writes "The quick brown fox jumps over the lazy dog."
+<script>
 ```
 
-That's right, you may have noticed that most functions in Teepee are chainable (like [jQuery][jquery]). Nice!
+### Script tags
 
-
-### Examples: Script tags
-
-You can even use templates in &lt;script&gt; tags to make your entire page. Sweet!
+Load templates from <script> elements.
 
 ```html
-<body>
-	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-	<script id="demo-template" type="text/html">
-	<h1>
-		{{=pageTitle}}
-	</h1>
-	<p>
-		{{=pageDescription}}
-	</p>
-	</script>
-	<script>
-	demoObject = {
-		pageTitle: 'My 1997 Website',
-		pageDescription: 'Hello and welcome to my awesome website.'
-	};
-	tp = new Teepee();
-	tp.tplById('demo-template').use(demoObject).write();
-	</script>
-</body>
+<script id="demo-template" type="text/html">
+<h1>
+	{{=pageTitle}}
+</h1>
+<p>
+	{{=pageDescription}}
+</p>
+</script>
+
+<script>
+tplObject = {
+	pageTitle: 'My Website',
+	pageDescription: 'Hello and welcome to my awesome website.'
+};
+
+teepee()
+	.tplById('demo-template') // sets the template string by the element where id="demo-template"
+	.use(tplObject) // sets the use object as tplObject
+	.write(); // writes the rendered template
+</script>
 ```
 
-
-You can even use external templates in &lt;script&gt; tags to make your page as well as style it [Sass][sass]-style. Nifty!
+Load external templates from <script> elements using the src attribute. Create templates for HTML, CSS, or anything else.
 
 ```html
-<body>
-	<script src="//raw.github.com/rezitech/teepee/master/teepee.js"></script>
-	<script src="demo-advanced.tpl.html" id="demo-html" type="text/html">
-		<-- Contents of "demo-advanced.tpl.html" -->
-		<h1>
-			{{=pageTitle}}
-		</h1>
-		<nav>
-			<ul>
-				{{#pageNavigation}}
-				<li>
-					<a href="{{=pageNavigation.href}}">{{=pageNavigation.title}}</a>
-				</li>
-				{{/pageNavigation}}
-			</ul>
-		</nav>
-	</script>
-	<script src="demo-advanced.tpl.css" id="demo-css" type="text/css">
-		/* Contents of "demo-advanced.tpl.css" */
-		body {
-			background: {{=pageBackgroundColor}};
-			color: {{=pageTextColor}};
-		}
-		a {
-			color: {{=pageTextColor}};
-			text-decoration: none;
-		}
-	</script>
-	<script>
-	demoObject = {
-		pageTitle: 'My HTML5 1997 Website',
-		pageNavigation: [
-			{ href: '#uno', title: 'One' },
-			{ href: '#dos', title: 'Two' },
-			{ href: '#tres', title: 'Three' },
-			{ href: '#cuatro', title: 'Four' },
-			{ href: '#cinco', title: 'Five' },
-		],
-		pageBackgroundColor: '#444',
-		pageTextColor: '#FFF'
-	};
-	</script>
-	<script>
-	var tp = new Teepee();
-	tp.use(demoObject);
-	tp.tplById('demo-css', false).writeCSS().tplById('demo-html', false).write();
-	</script>
-</body>
+<script src="example-external_script_tags.tpl.html" id="demo-html" type="text/html">
+<!-- Contents of "example-external_script_tags.tpl.html" -->
+<h1>
+	{{=pageTitle}}
+</h1>
+<nav>
+	<ul>
+		{{#pageNavigation}}
+			<li>
+				<a href="{{=pageNavigation.href}}">{{=pageNavigation.title}}</a>
+			</li>
+		{{/pageNavigation}}
+	</ul>
+</nav>
+</script>
+
+<script src="example-external_script_tags.tpl.css" id="demo-css" type="text/css">
+/* Contents of "example-external_script_tags.tpl.css" */
+body {
+	background: {{=pageBackgroundColor}};
+	color: {{=pageTextColor}};
+}
+a {
+	color: {{=pageTextColor}};
+	text-decoration: none;
+}
+</script>
+
+<script>
+tplObject = {
+	pageTitle: 'My HTML5 Website',
+	pageNavigation: [
+		{ href: '#uno', title: 'One' },
+		{ href: '#dos', title: 'Two' },
+		{ href: '#tres', title: 'Three' },
+		{ href: '#cuatro', title: 'Four' },
+		{ href: '#cinco', title: 'Five' },
+	],
+	pageBackgroundColor: '#444',
+	pageTextColor: '#FFF'
+};
+
+teepee()
+	.use(tplObject) // sets the use object as tplObject
+	.tplById('demo-css', false) // synchronously sets the template string by the element where id="demo-css"
+	.css() // appends the rendered template as a style element to the document
+	.tplById('demo-html', false) // synchronously sets the template string by the element where id="demo-html"
+	.write(); // writes the rendered template
+</script>
 ```
 
 ## Features
 
-Teepee's filled with functionality that will allow you to start developing immediately.
-
-----
+Teepee is pumped up with features to allow you to start developing immediately.
 
 ### Creating a new instance
 
-#### Syntax
+A new instance of teepee is created by calling the Teepee function.
 
-```javascript
-_tp_ = new Teepee()
+```javscript
+var tpA = teepee(); // an independent instance of teepee
+var tpB = teepee(); // another independent instance of teepee
 ```
-
-----
 
 ### opener
 
-#### Syntax
-
-```javascript
-_tp_.opener
-_tp_.opener ( _chars_ )
-```
-
-#### Summary
-
 Sets the opening character(s) of Teepee code and returns the instance of Teepee. If nothing is passed, the current opening character(s) are returned.
 
-#### Parameters
-
-<dl>
-	<dt>chars</dt>
-	<dd>The character(s) to be used.</dd>
-</dl>
-
-----
-
-### closer
-
-#### Syntax
-
-```javascript
-_tp_.closer
-_tp_.closer ( _chars_ )
+```javscript
+tp.opener; // returns the current opening character(s)
+tp.opener( '@' ); // sets the opening character as "@"
+tp.render( 'Hello, @=who}}!', { who: 'World' } ); // renders "Hello, World!"
 ```
 
-#### Summary
+### closer
 
 Sets the closing character(s) of Teepee code and returns the instance of Teepee. If nothing is passed, the current closing character(s) are returned.
 
-#### Parameters
-
-<dl>
-	<dt>chars</dt>
-	<dd>The character(s) to be used.</dd>
-</dl>
-
-----
-
-### iffer
-
-#### Syntax
-
-```javascript
-_tp_.iffer
-_tp_.iffer ( _chars_ )
+```javscript
+tp.closer; // returns the current closing character(s)
+tp.closer( '@' ); // sets the closing character as "~"
+tp.render( 'Hello, {{=who@!', { who: 'World' } ); // renders "Hello, World!"
 ```
-
-#### Summary
-
-Sets the character(s) used to begin an IF statement and returns the instance of Teepee. If nothing is passed, the current IF character(s) are returned.
-
-#### Parameters
-
-<dl>
-	<dt>chars</dt>
-	<dd>The character(s) to be used.</dd>
-</dl>
-
-----
-
-### closer
-
-#### Syntax
-
-```javascript
-_tp_.notter
-_tp_.notter ( _chars_ )
-```
-
-#### Summary
-
-Sets the character(s) used to begin an IF NOT statement and returns the instance of Teepee. If nothing is passed, the current IF NOT character(s) are returned.
-
-#### Parameters
-
-<dl>
-	<dt>chars</dt>
-	<dd>The character(s) to be used.</dd>
-</dl>
-
-----
-
-### looper
-
-#### Syntax
-
-```javascript
-_tp_.looper
-_tp_.looper ( _chars_ )
-```
-
-#### Summary
-
-Sets the character(s) used to begin a FOR statement and returns the instance of Teepee. If nothing is passed, the current FOR character(s) are returned.
-
-#### Parameters
-
-<dl>
-	<dt>chars</dt>
-	<dd>The character(s) to be used.</dd>
-</dl>
-
-----
 
 ### printer
 
-#### Syntax
+Sets the character(s) used to print and returns the instance of Teepee. If nothing is passed, the current printing character(s) are returned.
 
-```javascript
-_tp_.printer
-_tp_.printer ( _chars_ )
+```javscript
+tp.printer; // returns the current printing character(s)
+tp.printer( '~' ); // sets the printing character as "~"
+tp.render( 'Hello, {{~who}}!', { who: 'World' } ); // renders "Hello, World!"
 ```
 
-#### Summary
+### iffer
 
-Sets the character(s) used to print a variable and returns the instance of Teepee. If nothing is passed, the current printing character(s) are returned.
+Sets the character(s) used to begin an IF statement and returns the instance of Teepee. If nothing is passed, the current IF character(s) are returned.
 
-#### Parameters
+```javscript
+tp.closer; // returns the current IF character(s)
+tp.iffer( '^' ); // sets the IF character as "^"
+tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders "Hello, World!"
+```
 
-<dl>
-	<dt>chars</dt>
-	<dd>The character(s) to be used.</dd>
-</dl>
+### notter
 
-----
+Sets the character(s) used to begin an IF NOT statement and returns the instance of Teepee. If nothing is passed, the current IF NOT character(s) are returned.
+
+```javscript
+tp.closer; // returns the current IF NOT character(s)
+tp.notter( '^' ); // sets the IF NOT character as "^"
+tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders "Hello!"
+```
+
+### looper
+
+Sets the character(s) used to begin a FOR statement and returns the instance of Teepee. If nothing is passed, the current FOR character(s) are returned.
+
+```javscript
+tp.closer; // returns the current FOR character(s)
+tp.notter( '@' ); // sets the FOR character as "@"
+tp.render( 'Hello,{{@planets}} {{=planets}}{{/planets}}!', { planets: ['Venus', 'Earth', 'Mars'] } ); // renders "Hello, Venus Earth Mars!"
+```
+
+### ender
+
+Sets the character(s) used to end an IF/IF NOT/LOOP statement and returns the instance of Teepee. If nothing is passed, the current IF/IF NOT/LOOP ending character(s) are returned.
+
+```javscript
+tp.ender; // returns the current IF/IF NOT/LOOP ending character(s)
+tp.ender( '$' ); // sets the IF/IF NOT/LOOP ending character as "$"
+tp.render( 'Hello, {{?isWorld}}World{{$isWorld}}!', { isWorld: true } ); // renders "Hello, World!"
+```
 
 ### tpl
 
-#### Syntax
+Sets the template string and returns the instance of Teepee. If nothing is passed, the current template string is returned.
 
-```javascript
-_tp_.tpl ( _tpl_ )
+```javscript
+tp.tpl(); // returns the current template string
+tp.tpl( 'Hello {{=who}}' ); // sets the template string as "Hello {{=who}}"
 ```
-
-#### Summary
-
-Assigns the template string and returns the instance of Teepee. If nothing is passed, the current template string is returned.
-
-#### Parameters
-
-<dl>
-	<dt>tpl</dt>
-	<dd>The string to be used.</dd>
-</dl>
-
-----
 
 ### tplById
 
-#### Syntax
+Sets the template string based on an element's content and returns the instance of Teepee. If the element has a src attribute, the src file (which must reside on the same domain) will be used and may also be loaded asynchronously or synchronously.
 
-```javascript
-_tp_.tplById ( _id_, _async_ )
+```javscript
+tp.tplById('tpl-html-foo'); // asynchronously sets the template string by the element where id="tpl-html-foo"
+tp.tplById('tpl-html-bar', false); // synchronously sets the template string by the element where id="tpl-html-foo"
 ```
-
-#### Summary
-
-Sets the template string, based on an element's content and returns the instance of Teepee. If the element is a script tag with a src attribute, the local source will be used.
-
-#### Parameters
-
-<dl>
-	<dt>id</dt>
-	<dd>The id of the element.</dd>
-	<dt>async</dt>
-	<dd>The optional boolean of whether to load the template asynchronously.  Defaults true.</dd>
-</dl>
-
-----
 
 ### use
 
-#### Syntax
+Sets the object to be used by the template and returns the instance of Teepee. If nothing is passed, the current use object is returned.
 
-```javascript
-_tp_.use ( _use_ )
+```javscript
+tp.use(); // returns the current use object
+tp.use({ foo: 'bar' }); // sets the use object as { foo: 'bar' }
 ```
-
-#### Summary
-
-Sets the object to be used by the template and returns the instance of Teepee. If nothing is passed, the current object is returned.
-
-#### Parameters
-
-<dl>
-	<dt>use</dt>
-	<dd>The object to be used.</dd>
-</dl>
-
-----
 
 ### render
 
-#### Syntax
-
-```javascript
-_tp_.render
-_tp_.render ( _tpl_ , _use_ )
-```
-
-#### Summary
-
 Returns the rendered template.
 
-#### Parameters
-
-<dl>
-	<dt>tpl</dt>
-	<dd>The optional string of the template. Defaults to the stored string.</dd>
-	<dt>use</dt>
-	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
-</dl>
-
-----
+```javscript
+tp.render(); // returns the rendered template
+tp.render('Hello, {{=who}}!', { who: 'World' }); // returns "Hello, World!"
+```
 
 ### write
 
-#### Syntax
+Writes the rendered template and returns the instance of Teepee.
 
-```javascript
-_tp_.write ( _tpl_ , _use_ )
+```javscript
+tp.write(); // writes the rendered template
+tp.write('Hello, {{=who}}!', { who: 'World' }); // writes "Hello, World!"
 ```
 
-#### Summary
+### css
 
-Writes the rendered template to the document and returns the instance of Teepee.
+Appends the rendered template as a style element to the document and returns the instance of Teepee.
 
-#### Parameters
-
-<dl>
-	<dt>tpl</dt>
-	<dd>The optional string of the template. Defaults to the stored string.</dd>
-	<dt>use</dt>
-	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
-</dl>
-
-----
-
-### writeCSS
-
-#### Syntax
-
-```javascript
-_tp_.writeCSS ( _tpl_ , _use_ )
+```javscript
+tp.css(); // appends the rendered template as a style element to the document
+tp.css('body { background: {{=color}}; }', { color: '#000' }); // appends a style element containing "body { background: #000; }"
 ```
-
-#### Summary
-
-Writes the rendered template to a style element in the document and returns the instance of Teepee.
-
-#### Parameters
-
-<dl>
-	<dt>tpl</dt>
-	<dd>The optional string of the template. Defaults to the stored string.</dd>
-	<dt>use</dt>
-	<dd>The optional object to be used by the template. Defaults to the stored object.</dd>
-</dl>
 
 
 ## Licensing
 
-Teepee uses a dual [MIT][mit]/[GPL2][gpl] license. The MIT License is recommended for most projects. It is simple and easy to understand and it places almost no restrictions on what you can do with Teepee. If the GPL suits your project better you are also free to use Teepee under that license.
+Teepee uses a dual [MIT][mit]/[GPL-2.0][gpl] License. The [MIT License][mit] is recommended for most projects, because it is simple, easy to understand, and it places almost no restrictions on what you can do with Teepee. If the [GPL-2.0][gpl] License suits your project better, then you are also free to use Teepee under that license.
 
-You don't have to do anything special to choose one license or the other and you don't have to notify anyone which license you are using. You are free to use Teepee in commercial projects as long as the copyright header is left intact.
+You don't have to do anything special to choose one license or the other, and you don't have to notify anyone which license you are using. You are free to use Teepee in commercial projects as long as the copyright header is left intact.
 
 
 ## Contributing
 
 1. Fork it.
-2. Create a branch (`git checkout -b my_teepee`)
-3. Commit your changes (`git commit -am "Added Awesomeness"`)
-4. Push to the branch (`git push origin my_teepee`)
-5. Create an [Issue][1] with a link to your branch
-6. Enjoy a refreshing Coca Cola Classic (you earned it!) and wait
+2. Create a branch. (`git checkout -b my_teepee`)
+3. Commit your changes. (`git commit -am "Added Awesomeness"`)
+4. Push to the branch. (`git push origin my_teepee`)
+5. Create an [Issue][issue] with a link to your branch.
+6. Enjoy a refreshing Coca Cola Classic (you earned it!) and wait.
 
-[1]: //github.com/rezitech/teepee/issues
-[mustache]: http://mustache.github.com/
-[ctemplate]: //code.google.com/p/google-ctemplate/
-[jquery]: http://jquery.com
-[sass]: http://sass-lang.com/
-[MIT]: http://www.opensource.org/licenses/MIT
-[GPL]: http://www.opensource.org/licenses/GPL-2.0
+[teepee.js]: http://rezitech.github.com/teepee/teepee.js
+[github]: //github.com/rezitech/teepee
+[mit]: http://www.opensource.org/licenses/MIT
+[gpl]: http://www.opensource.org/licenses/GPL-2.0
+[issue]: //github.com/rezitech/teepee/issues
