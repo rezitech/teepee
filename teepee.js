@@ -1,4 +1,4 @@
-/*! Teepee v1.0.1 MIT/GPL2 @rezitech */
+/*! Teepee v1.1.1 MIT/GPL2 @rezitech */
 (function (doc) {
 	// return whether a value is worth displaying IMHO
 	function isPositive (val) {
@@ -44,8 +44,8 @@
 						escapeRegExp(storage.iffer)+'|'+
 						escapeRegExp(storage.notter)+'|'+
 						escapeRegExp(storage.looper)+
-						')$')
-					).test(e[0])) {
+						')$')).test(e[0])
+					) {
 						var
 						obj = {},
 						after = callee(arr.splice(++i, arr.length - i));
@@ -55,13 +55,13 @@
 						arr = arr.concat(after[1]);
 						--i;
 					}
-					else if ((new RegExp('^'+escapeRegExp(storage.writer)+'$')).test(e[0])) {
-						during.push({condition: e});
-					}
-					else {
+					else if (
+						(new RegExp('^'+escapeRegExp(storage.ender)+'$')).test(e[0])
+					) {
 						after = arr.splice(++i, arr.length - 1);
 						--i;
 					}
+					else during.push({condition: e});
 				}
 				else during.push(e);
 			}
@@ -105,6 +105,7 @@
 		instance = this || callee,
 		storage = {
 			closer: '}}',
+			ender: '/',
 			iffer: '?',
 			looper: '#',
 			notter: '!',
@@ -121,6 +122,14 @@
 			return instance;
 		};
 		instance.closer.toString = instance.closer;
+		//
+		// get/set the closing character(s)
+		instance.ender = function (str) {
+			if (str === undefined) return storage.ender;
+			storage.ender = String(str);
+			return instance;
+		};
+		instance.ender.toString = instance.ender;
 		//
 		// get/set the if character(s)
 		instance.iffer = function (str) {
