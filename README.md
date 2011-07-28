@@ -13,7 +13,7 @@ Teepee is a templating system for JavaScript, ideal for creating websites, webap
 To use Teepee, include this script anywhere in your page.
 
 ```html
-&lt;script src="//rezitech.github.com/teepee/teepee.js"&gt;&lt;/script&gt;
+<script src="//rezitech.github.com/teepee/teepee.js"></script>
 ```
 
 ### Hello World
@@ -21,12 +21,12 @@ To use Teepee, include this script anywhere in your page.
 Teepee syntax is easy to use and completely customizable.
 
 ```html
-&lt;script&gt;
+<script>
 teepee().write(
 	'Hello, {{=who}}!',
 	{ who: 'World' }
 ); // writes "Hello, World!"
-&lt;/script&gt;
+</script>
 ```
 
 ### If and If Not
@@ -34,7 +34,7 @@ teepee().write(
 Use simplified IF and IF NOT statements to control output.
 
 ```html
-&lt;script&gt;
+<script>
 teepee().write(
 	'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
 	{ isMars: false, isEarth: true }
@@ -44,7 +44,7 @@ teepee().write(
 	'Hello{{?person === "Dolly"}}, {{=person}}{{/person}}!',
 	{ person: 'Dolly' }
 ); // writes "Hello, Dolly!"
-&lt;/script&gt;
+</script>
 ```
 
 
@@ -53,12 +53,12 @@ teepee().write(
 Use a simplified loop statement to parse an array.
 
 ```html
-&lt;script&gt;
+<script>
 teepee().write(
 	'Ask these questions:{{#q}} {{=q}}{{/q}}.',
 	{ q: ['Who', 'What', 'Where', 'When', 'Why'] }
 ); // writes "Ask these questions: Who What Where When Why."
-&lt;/script&gt;
+</script>
 ```
 
 
@@ -67,7 +67,7 @@ teepee().write(
 Customize the syntax to your heart's content.
 
 ```html
-&lt;script&gt;
+<script>
 teepee()
 	.opener('@')
 	.closer('@')
@@ -76,7 +76,7 @@ teepee()
 		'The quick @$jumper@ jumps over the @$jumpee@.',
 		{ jumper: 'brown fox', jumpee: 'lazy dog' }
 	); // writes "The quick brown fox jumps over the lazy dog."
-&lt;script&gt;
+<script>
 ```
 
 ### Script tags
@@ -84,16 +84,16 @@ teepee()
 Load templates from &lt;script&gt; elements.
 
 ```html
-&lt;script id="demo-template" type="text/html"&gt;
-&lt;h1&gt;
+<script id="demo-template" type="text/html">
+<h1>
 	{{=pageTitle}}
-&lt;/h1&gt;
-&lt;p&gt;
+</h1>
+<p>
 	{{=pageDescription}}
-&lt;/p&gt;
-&lt;/script&gt;
+</p>
+</script>
 
-&lt;script&gt;
+<script>
 tplObject = {
 	pageTitle: 'My Website',
 	pageDescription: 'Hello and welcome to my awesome website.'
@@ -103,29 +103,29 @@ teepee()
 	.tplById('demo-template') // sets the template string by the element where id="demo-template"
 	.use(tplObject) // sets the use object as tplObject
 	.write(); // writes the rendered template
-&lt;/script&gt;
+</script>
 ```
 
 Load external templates from &lt;script&gt; elements using the src attribute. Create templates for HTML, CSS, or anything else.
 
 ```html
-&lt;script src="example-external_script_tags.tpl.html" id="demo-html" type="text/html"&gt;
-&lt;!-- Contents of "example-external_script_tags.tpl.html" --&gt;
-&lt;h1&gt;
+<script src="example-external_script_tags.tpl.html" id="demo-html" type="text/html">
+<!-- Contents of "example-external_script_tags.tpl.html" -->
+<h1>
 	{{=pageTitle}}
-&lt;/h1&gt;
-&lt;nav&gt;
-	&lt;ul&gt;
+</h1>
+<nav>
+	<ul>
 		{{#pageNavigation}}
-			&lt;li&gt;
-				&lt;a href="{{=pageNavigation.href}}"&gt;{{=pageNavigation.title}}&lt;/a&gt;
-			&lt;/li&gt;
+			<li>
+				<a href="{{=pageNavigation.href}}">{{=pageNavigation.title}}</a>
+			</li>
 		{{/pageNavigation}}
-	&lt;/ul&gt;
-&lt;/nav&gt;
-&lt;/script&gt;
+	</ul>
+</nav>
+</script>
 
-&lt;script src="example-external_script_tags.tpl.css" id="demo-css" type="text/css"&gt;
+<script src="example-external_script_tags.tpl.css" id="demo-css" type="text/css">
 /* Contents of "example-external_script_tags.tpl.css" */
 body {
 	background: {{=pageBackgroundColor}};
@@ -135,9 +135,9 @@ a {
 	color: {{=pageTextColor}};
 	text-decoration: none;
 }
-&lt;/script&gt;
+</script>
 
-&lt;script&gt;
+<script>
 tplObject = {
 	pageTitle: 'My HTML5 Website',
 	pageNavigation: [
@@ -157,7 +157,7 @@ teepee()
 	.css() // appends the rendered template as a style element to the document
 	.tplById('demo-html', false) // synchronously sets the template string by the element where id="demo-html"
 	.write(); // writes the rendered template
-&lt;/script&gt;
+</script>
 ```
 
 ## Features
