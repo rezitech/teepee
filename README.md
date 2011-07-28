@@ -1,7 +1,7 @@
 # Teepee
 
 Teepee is a templating system for JavaScript, ideal for creating websites, webapps, or anything else - quickly. Teepee is stable, fast, easy, and even lets you control the syntax (and all of this in 1KB).
-<img src="blob/logo/logo.png"/>
+<img src="logo.png"/>
 
 ## Using Teepee
 
