@@ -1,8 +1,6 @@
 
 <center><img src="https://github.com/randombrad/teepee/raw/logo/logo.png" width="200px"/>
 </center>
-# Teepee
-
 Teepee is a templating system for JavaScript, ideal for creating websites, webapps, or anything else - quickly. Teepee is stable, fast, easy, and even lets you control the syntax (and all of this in 1KB).
 
 ## Using Teepee
