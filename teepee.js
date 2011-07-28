@@ -1,4 +1,4 @@
-/*! Teepee v1.0.1 MIT/GPL2 @rezitech */
+/*! Teepee v1.1.1 MIT/GPL2 @rezitech */
 (function (doc) {
 	// return whether a value is worth displaying IMHO
 	function isPositive (val) {
@@ -8,10 +8,10 @@
 	function escapeRegExp (str) {
 		return String(str).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 	}
-	// the tpl function
-	window.Teepee = function () {
+	// the tp function
+	function TP () {
 		// turn a string into a template array
-		function tplArray (str) {
+		function tpArray (str) {
 			var
 			callee = arguments.callee,
 			tpl = str.match(
@@ -29,7 +29,7 @@
 			return arr;
 		}
 		// turn a template array into a template object
-		function tplObject (arr) {
+		function tpObject (arr) {
 			var
 			callee = arguments.callee,
 			during = [],
@@ -44,8 +44,8 @@
 						escapeRegExp(storage.iffer)+'|'+
 						escapeRegExp(storage.notter)+'|'+
 						escapeRegExp(storage.looper)+
-						')$')
-					).test(e[0])) {
+						')$')).test(e[0])
+					) {
 						var
 						obj = {},
 						after = callee(arr.splice(++i, arr.length - i));
@@ -55,13 +55,13 @@
 						arr = arr.concat(after[1]);
 						--i;
 					}
-					else if ((new RegExp('^'+escapeRegExp(storage.printer)+'$')).test(e[0])) {
-						during.push({condition: e});
-					}
-					else {
+					else if (
+						(new RegExp('^'+escapeRegExp(storage.ender)+'$')).test(e[0])
+					) {
 						after = arr.splice(++i, arr.length - 1);
 						--i;
 					}
+					else during.push({condition: e});
 				}
 				else during.push(e);
 			}
@@ -69,7 +69,7 @@
 			return [during, after];
 		}
 		// render a template object
-		function tplRender (arr, obj) {
+		function tpRender (arr, obj) {
 			var
 			callee = arguments.callee,
 			html = '',
@@ -82,7 +82,7 @@
 					varName = e.condition[1],
 					varValue = (new Function('return arguments[0].'+varName))(obj),
 					ei, eo;
-					// print
+					// write
 					if (chr === storage.printer && isPositive(varValue)) html += varValue;
 					// if
 					else if (chr === storage.iffer && isPositive(varValue)) html += callee(e.children, obj);
@@ -105,6 +105,7 @@
 		instance = this || callee,
 		storage = {
 			closer: '}}',
+			ender: '/',
 			iffer: '?',
 			looper: '#',
 			notter: '!',
@@ -121,6 +122,14 @@
 			return instance;
 		};
 		instance.closer.toString = instance.closer;
+		//
+		// get/set the closing character(s)
+		instance.ender = function (str) {
+			if (str === undefined) return storage.ender;
+			storage.ender = String(str);
+			return instance;
+		};
+		instance.ender.toString = instance.ender;
 		//
 		// get/set the if character(s)
 		instance.iffer = function (str) {
@@ -154,7 +163,7 @@
 		};
 		instance.opener.toString = instance.opener;
 		//
-		// get/set the printing character(s)
+		// get/set the printer character(s)
 		instance.printer = function (str) {
 			if (str === undefined) return storage.printer;
 			storage.printer = String(str);
@@ -194,18 +203,17 @@
 		//
 		// render a template with a scope object
 		instance.render = function (tpl, use) {
-			return tplRender(tplObject(tplArray(tpl || storage.tpl))[0], use || storage.use);
+			return tpRender(tpObject(tpArray(tpl || storage.tpl))[0], use || storage.use);
 		};
-		instance.render.toString = instance.render;
 		//
-		// write a rendered template to the document
+		// Writes a rendered template to the document
 		instance.write = function (tpl, use) {
 			doc.write(instance.render(tpl, use));
 			return instance;
 		};
 		//
 		// append a rendered template to the document as a style
-		instance.writeCSS = function (tpl, use) {
+		instance.css = function (tpl, use) {
 			var div = doc.createElement('div');
 			div.innerHTML = '<style>'+instance.render(tpl, use)+'</style>';
 			doc.documentElement.firstChild.appendChild(div.firstChild);
@@ -215,4 +223,5 @@
 		// we're done here
 		return instance;
 	};
+	window.teepee = function () { return new TP(); };
 })(document);
