@@ -3,6 +3,8 @@ nav, subline { display: block; }
 body {
 	font: 1em/1.5 Calibri, sans-serif;
 	margin: 0;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
 }
 
 dl, nav, ol, p, pre, ul {
