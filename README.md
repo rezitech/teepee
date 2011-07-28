@@ -208,7 +208,7 @@ tp.render( 'Hello, {{~who}}!', { who: 'World' } ); // renders "Hello, World!"
 Sets the character(s) used to begin an IF statement and returns the instance of Teepee. If nothing is passed, the current IF character(s) are returned.
 
 ```javscript
-tp.closer; // returns the current IF character(s)
+tp.iffer; // returns the current IF character(s)
 tp.iffer( '^' ); // sets the IF character as "^"
 tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders "Hello, World!"
 ```
@@ -218,7 +218,7 @@ tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // rend
 Sets the character(s) used to begin an IF NOT statement and returns the instance of Teepee. If nothing is passed, the current IF NOT character(s) are returned.
 
 ```javscript
-tp.closer; // returns the current IF NOT character(s)
+tp.notter; // returns the current IF NOT character(s)
 tp.notter( '^' ); // sets the IF NOT character as "^"
 tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders "Hello!"
 ```
@@ -228,8 +228,8 @@ tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // rend
 Sets the character(s) used to begin a FOR statement and returns the instance of Teepee. If nothing is passed, the current FOR character(s) are returned.
 
 ```javscript
-tp.closer; // returns the current FOR character(s)
-tp.notter( '@' ); // sets the FOR character as "@"
+tp.looper; // returns the current FOR character(s)
+tp.looper( '@' ); // sets the FOR character as "@"
 tp.render( 'Hello,{{@planets}} {{=planets}}{{/planets}}!', { planets: ['Venus', 'Earth', 'Mars'] } ); // renders "Hello, Venus Earth Mars!"
 ```
 
