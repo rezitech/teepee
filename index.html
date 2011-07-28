@@ -296,7 +296,7 @@ tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // rend
 							If nothing is passed, the current IF NOT character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.closer; // returns the current IF NOT character(s)
+<pre class="prettyprint lang-js">tp.notter; // returns the current IF NOT character(s)
 tp.notter( '^' ); // sets the IF NOT character as &quot;^&quot;
 tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders &quot;Hello!&quot;</pre>
 						</div>
@@ -308,8 +308,8 @@ tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // rend
 							If nothing is passed, the current FOR character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.closer; // returns the current FOR character(s)
-tp.notter( '@' ); // sets the FOR character as &quot;@&quot;
+<pre class="prettyprint lang-js">tp.looper; // returns the current FOR character(s)
+tp.looper( '@' ); // sets the FOR character as &quot;@&quot;
 tp.render( 'Hello,{{@planets}} {{=planets}}{{/planets}}!', { planets: ['Venus', 'Earth', 'Mars'] } ); // renders &quot;Hello, Venus Earth Mars!&quot;</pre>
 						</div>
 						<h4>
