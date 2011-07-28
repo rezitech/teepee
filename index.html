@@ -162,9 +162,9 @@ tplObject = {
 };
 
 teepee()
-	.tplById('demo-template')
-	.use(tplObject)
-	.write();
+	.tplById('demo-template') // sets the template string by the element where id="demo-template"
+	.use(tplObject) // sets the use object as tplObject
+	.write(); // writes the rendered template
 &lt;/script&gt;</code></pre>
 						</div>
 						<p>
@@ -216,11 +216,11 @@ tplObject = {
 };
 
 teepee()
-	.use(tplObject)
-	.tplById('demo-css', false)
-	.css()
-	.tplById('demo-html', false)
-	.write();
+	.use(tplObject) // sets the use object as tplObject
+	.tplById('demo-css', false) // synchronously sets the template string by the element where id="demo-css"
+	.css() // appends the rendered template as a style element to the document
+	.tplById('demo-html', false) // synchronously sets the template string by the element where id="demo-html"
+	.write(); // writes the rendered template
 &lt;/script&gt;</code></pre>
 						</div>
 						<!-- -->
