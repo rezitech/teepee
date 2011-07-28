@@ -255,6 +255,15 @@ tp.render( 'Hello, @=who&#125;&#125;!', { who: 'World' } ); // renders &quot;Hel
 						<h4>
 							closer
 						</h4>
+						<p>
+							Sets the closing character(s) of Teepee code and returns the instance of Teepee.
+							If nothing is passed, the current closing character(s) are returned.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.iffer; // returns the current closing character(s)
+tp.closer( '@' ); // sets the closing character as &quot;@&quot;
+tp.render( 'Hello, &#123;&#123;=who@!', { who: 'World' } ); // renders &quot;Hello, World!&quot;</pre>
+						</div>
 						<h4>
 							printer
 						</h4>
@@ -266,15 +275,6 @@ tp.render( 'Hello, @=who&#125;&#125;!', { who: 'World' } ); // renders &quot;Hel
 <pre class="prettyprint lang-js">tp.printer; // returns the current printing character(s)
 tp.printer( '~' ); // sets the printing character as &quot;~&quot;
 tp.render( 'Hello, {{~who}}!', { who: 'World' } ); // renders &quot;Hello, World!&quot;</pre>
-						</div>
-						<p>
-							Sets the closing character(s) of Teepee code and returns the instance of Teepee.
-							If nothing is passed, the current closing character(s) are returned.
-						</p>
-						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.iffer; // returns the current closing character(s)
-tp.closer( '@' ); // sets the closing character as &quot;@&quot;
-tp.render( 'Hello, &#123;&#123;=who@!', { who: 'World' } ); // renders &quot;Hello, World!&quot;</pre>
 						</div>
 						<h4>
 							iffer
