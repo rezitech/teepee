@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>body { font: 1.5em/1.5 sans-serif; margin: 2em; } h1, p { margin: 1em 0; } h1 { font-size: 2em; }</style>
+		<title>Teepee</title>
+	</head>
+	<body>
+		<script src="teepee.js"></script>
+		<p>
+			<script>
+			teepee().write(
+				'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
+				{ isMars: false, isEarth: true }
+			); // writes "Hello, Earth!"
+			</script>
+		</p>
+		<p>
+			<script>
+			teepee().write(
+				'Hello{{?person === "Dolly"}}, {{=person}}{{/person}}!',
+				{ person: "Dolly" }
+			); // writes "Hello, Dolly!"
+			</script>
+		</p>
+	</body>
+</html>

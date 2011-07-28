@@ -2,7 +2,9 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="shortcut icon" href="favicon.ico" />
+		<script src="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
 		<title>Teepee</title>
 	</head>
 	<body>
@@ -26,77 +28,221 @@
 							Teepee is a templating system for JavaScript, ideal for creating websites, webapps, or anything else - quickly.
 							Teepee is stable, fast, easy, and even lets you control the syntax (and all of this in 1KB).
 						</p>
-						<h2>
+						<!-- -->
+						<h3>
+							Downloading Teepee
+						</h3>
+						<p>
+							<a href="teepee.js">Download teepee.js</a> or <a href="//github.com/rezitech/teepee">get the latest release at GitHub</a>.
+						</p>
+						<!-- -->
+						<h3>
 							Using Teepee
-						</h2>
+						</h3>
 						<p>
 							To use Teepee, include this script anywhere in your page.
 						</p>
 						<div class="codeblock">
-<pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//raw.github.com/rezitech/teepee/master/teepee.js"</span><span class="nt">&gt;&lt;/script&gt;</span></pre>
+<pre class="prettyprint lang-html">&lt;script src=&quot;//rezitech.github.com/teepee/teepee.js&quot;&gt;&lt;/script&gt;</pre>
 						</div>
-						<h3>
+						<!-- -->
+						<h4>
 							Example: Hello World
-						</h3>
+						</h4>
 						<p>
 							Teepee syntax is both easy to use, and completely customizable.
 							Teepee's default syntax is inspired by <a href="http://mustache.github.com/">Mustache</a>, an absolutely fantastic markup language (which is itself innspired by <a href="//code.google.com/p/google-ctemplate/">CTemplate</a>). Awesome!
 						</p>
 						<div class="codeblock">
-<pre><span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//raw.github.com/rezitech/teepee/master/teepee.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-    <span class="nt">&lt;script&gt;</span>
-    <span class="kd">var</span> <span class="nx">tp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Teepee</span><span class="p">();</span>
-    <span class="nx">tp</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span>
-        <span class="s1">'Hello, {{=who}}!'</span><span class="p">,</span>
-        <span class="p">{</span> <span class="nx">who</span><span class="o">:</span> <span class="s1">'World'</span> <span class="p">}</span>
-    <span class="p">);</span> <span class="c1">// prints "Hello, World!"</span>
-    <span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-</pre>
+							<a class="open" href="example-hello_world.html">Open in new window</a>
+<pre class="prettyprint lang-html">&lt;script&gt;
+teepee().write(
+	'Hello, {{=who}}!',
+	{ who: 'World' }
+); // writes &quot;Hello, World!&quot;
+&lt;/script&gt;</pre>
 						</div>
-						<h3>
-							Examples: If and If Not
-						</h3>
+						<!-- -->
+						<h4>
+							Examples: Script tags
+						</h4>
 						<p>
-							Use simplified IF and IF NOT statements in your templates for even more dynamic control. Oh yea!
+							You can even use templates in &lt;script&gt; tags to make your entire page. Sweet!
 						</p>
 						<div class="codeblock">
-<pre><span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//raw.github.com/rezitech/teepee/master/teepee.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-    <span class="nt">&lt;script&gt;</span>
-    <span class="kd">var</span> <span class="nx">tp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Teepee</span><span class="p">();</span>
-    <span class="nx">tp</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span>
-        <span class="s1">'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!'</span><span class="p">,</span>
-        <span class="p">{</span> <span class="nx">isMars</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">isEarth</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
-    <span class="p">);</span> <span class="c1">// prints "Hello, Earth!"</span>
-    <span class="nx">tp</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span>
-        <span class="s1">'Hello{{?person === "Dolly"}}, {{=person}}{{/person}}!'</span><span class="p">,</span>
-        <span class="p">{</span> <span class="nx">person</span><span class="o">:</span> <span class="s2">"Dolly"</span> <span class="p">}</span>
-    <span class="p">);</span> <span class="c1">// prints "Hello, Dolly!"</span>
-    <span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-</pre>
+							<a class="open" href="example-if_and_if_not.html">Open in new window</a>
+<pre class="prettyprint lang-html">&lt;script&gt;
+teepee().write(
+	'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
+	{ isMars: false, isEarth: true }
+); // writes &quot;Hello, Earth!&quot;
+
+teepee().write(
+	'Hello{{?person === &quot;Dolly&quot;}}, {{=person}}{{/person}}!',
+	{ person: 'Dolly' }
+); // writes &quot;Hello, Dolly!&quot;
+&lt;/script&gt;</pre>
 						</div>
-						<h3>
+						<!-- -->
+						<h4>
 							Examples: Looping
-						</h3>
+						</h4>
 						<p>
 							Use a simplified loop statement in your templates to loop through an array. Yea Yea Yea!
 						</p>
 						<div class="codeblock">
-<pre><span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//raw.github.com/rezitech/teepee/master/teepee.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-    <span class="nt">&lt;script&gt;</span>
-    <span class="kd">var</span> <span class="nx">tp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Teepee</span><span class="p">();</span>
-    <span class="nx">tp</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span>
-        <span class="s1">'Ask these questions:{{#q}} {{=q}}{{/q}}.'</span><span class="p">,</span>
-        <span class="p">{</span> <span class="nx">q</span><span class="o">:</span> <span class="p">[</span><span class="s1">'Who'</span><span class="p">,</span> <span class="s1">'What'</span><span class="p">,</span> <span class="s1">'Where'</span><span class="p">,</span> <span class="s1">'When'</span><span class="p">,</span> <span class="s1">'Why'</span><span class="p">]</span> <span class="p">}</span>
-    <span class="p">);</span> <span class="c1">// prints "Ask these questions: Who What Where When Why."</span>
-    <span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-</pre>
+							<a class="open" href="example-looping.html">Open in new window</a>
+<pre class="prettyprint lang-html">&lt;script&gt;
+teepee().write(
+	'Ask these questions:{{#q}} {{=q}}{{/q}}.',
+	{ q: ['Who', 'What', 'Where', 'When', 'Why'] }
+); // writes &quot;Ask these questions: Who What Where When Why.&quot;
+&lt;/script&gt;</pre>
 						</div>
+						<!-- -->
+						<h4>
+							Examples: Syntax Modification
+						</h4>
+						<p>
+							You can change Teepee's syntax to your heart's content. Yay!
+						</p>
+						<div class="codeblock">
+							<a class="open" href="example-looping.html">Open in new window</a>
+<pre class="prettyprint lang-html">&lt;script&gt;
+teepee()
+	.opener('@')
+	.closer('@')
+	.writer('$')
+	.write(
+		'The quick @$jumper@ jumps over the @$jumpee@.',
+		{ jumper: 'brown fox', jumpee: 'lazy dog' }
+	); // writes &quot;The quick brown fox jumps over the lazy dog.&quot;
+&lt;script&gt;</pre>
+						</div>
+						<!-- -->
+						<h4>
+							Examples: Script tags
+						</h4>
+						<p>
+							You can even use templates in &lt;script&gt; tags to make your entire page. Sweet!
+						</p>
+						<div class="codeblock">
+							<a class="open" href="example-script_tags.html">Open in new window</a>
+<pre><code class="prettyprint lang-html">&lt;script id=&quot;demo-template&quot; type=&quot;text/html&quot;&gt;</code>
+<code class="prettyprint lang-html">&lt;h1&gt;
+	{{=pageTitle}}
+&lt;/h1&gt;
+&lt;p&gt;
+	{{=pageDescription}}
+&lt;/p&gt;</code>
+<code class="prettyprint lang-html">&lt;/script&gt;</code>
+
+<code class="prettyprint lang-html">&lt;script&gt;
+tplObject = {
+	pageTitle: 'My Website',
+	pageDescription: 'Hello and welcome to my awesome website.'
+};
+
+teepee()
+	.tplById('demo-template')
+	.use(tplObject)
+	.write();
+&lt;/script&gt;</code></pre>
+						</div>
+						<p>
+							You can even use external templates in &lt;script&gt; tags to make your page, as well as style it like you might with <a href="http://sass-lang.com/">Sass</a>.
+							Nifty!
+						</p>
+						<div class="codeblock">
+							<a class="open" href="example-external_script_tags.html">Open in new window</a>
+<pre><code class="prettyprint lang-html">&lt;script src=&quot;example-external_script_tags.tpl.html&quot; id=&quot;demo-html&quot; type=&quot;text/html&quot;&gt;</code>
+<code class="prettyprint lang-html sub">&lt;!-- Contents of &quot;example-external_script_tags.tpl.html&quot; --&gt;
+&lt;h1&gt;
+	{{=pageTitle}}
+&lt;/h1&gt;
+&lt;nav&gt;
+	&lt;ul&gt;
+		{{#pageNavigation}}
+			&lt;li&gt;
+				&lt;a href=&quot;{{=pageNavigation.href}}&quot;&gt;{{=pageNavigation.title}}&lt;/a&gt;
+			&lt;/li&gt;
+		{{/pageNavigation}}
+	&lt;/ul&gt;
+&lt;/nav&gt;</code>
+<code class="prettyprint lang-html">&lt;/script&gt;</code>
+
+<code class="prettyprint lang-html">&lt;script src=&quot;example-external_script_tags.tpl.css&quot; id=&quot;demo-css&quot; type=&quot;text/css&quot;&gt;</code>
+<code class="prettyprint lang-css sub">/* Contents of &quot;example-external_script_tags.tpl.css&quot; */
+body {
+	background: {{=pageBackgroundColor}};
+	color: {{=pageTextColor}};
+}
+a {
+	color: {{=pageTextColor}};
+	text-decoration: none;
+}</code>
+<code class="prettyprint lang-html">&lt;/script&gt;</code>
+
+<code class="prettyprint lang-html">&lt;script&gt;
+tplObject = {
+	pageTitle: 'My HTML5 Website',
+	pageNavigation: [
+		{ href: '#uno', title: 'One' },
+		{ href: '#dos', title: 'Two' },
+		{ href: '#tres', title: 'Three' },
+		{ href: '#cuatro', title: 'Four' },
+		{ href: '#cinco', title: 'Five' },
+	],
+	pageBackgroundColor: '#444',
+	pageTextColor: '#FFF'
+};
+
+teepee()
+	.use(tplObject)
+	.tplById('demo-css', false)
+	.css()
+	.tplById('demo-html', false)
+	.write();
+&lt;/script&gt;</code></pre>
+						</div>
+						<!-- -->
+						<h3>
+							Licensing
+						</h3>
+						<p>
+							Teepee uses a dual <a href="http://www.opensource.org/licenses/MIT">MIT</a>/<a href="http://www.opensource.org/licenses/GPL-2.0">GPL-2.0</a> License.
+							The <a href="http://www.opensource.org/licenses/MIT">MIT License</a> is recommended for most projects, because it is simple, easy to understand, and it places almost no restrictions on what you can do with Teepee.
+							If the <a href="http://www.opensource.org/licenses/GPL-2.0">GPL-2.0 License</a> suits your project better, then you are also free to use Teepee under that license.
+						</p>
+						<p>
+							You don't have to do anything special to choose one license or the other, and you don't have to notify anyone which license you are using.
+							You are free to use Teepee in commercial projects as long as the copyright header is left intact.
+						</p>
+						<!-- -->
+						<h3>
+							Contributing
+						</h3>
+						<ol>
+							<li>
+								Fork it.
+							</li>
+							<li>
+								Create a branch. (<code>git checkout -b my_teepee</code>)
+							</li>
+							<li>
+								Commit your changes. (<code>git commit -am &quot;Added Awesomeness&quot;</code>)
+							</li>
+							<li>
+								Push to the branch. (<code>git push origin my_teepee</code>)
+							</li>
+							<li>
+								Create an Issue with a link to your branch.
+							</li>
+							<li>
+								Enjoy a refreshing Coca Cola Classic (you earned it!) and wait.
+							</li>
+						</ol>
+						<!-- -->
 					</div>
 				</div>
 				<div class="doc-foot">
@@ -106,5 +252,6 @@
 				</div>
 			</div>
 		</div>
+		<script>prettyPrint();</script>
 	</body>
 </html>

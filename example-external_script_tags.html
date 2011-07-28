@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>body { font: 1.5em/1.5 sans-serif; margin: 2em; } h1, p { margin: 1em 0; } h1 { font-size: 2em; }</style>
+		<title>Teepee</title>
+	</head>
+	<body>
+		<script src="teepee.js"></script>
+		<script src="example-external_script_tags.tpl.html" id="demo-html" type="text/html"></script>
+		<script src="example-external_script_tags.tpl.css" id="demo-css" type="text/css"></script>
+		<script>
+		tplObject = {
+			pageTitle: 'My HTML5 Website',
+			pageNavigation: [
+				{ href: '#uno', title: 'One' },
+				{ href: '#dos', title: 'Two' },
+				{ href: '#tres', title: 'Three' },
+				{ href: '#cuatro', title: 'Four' },
+				{ href: '#cinco', title: 'Five' },
+			],
+			pageBackgroundColor: '#444',
+			pageTextColor: '#FFF'
+		};
+		teepee()
+			.use(tplObject)
+			.tplById('demo-css', false)
+			.css()
+			.tplById('demo-html', false)
+			.write();
+		</script>
+	</body>
+</html>

@@ -10,9 +10,9 @@
 			<script src="teepee.js"></script>
 			<script>
 			teepee().write(
-				'Hello, {{=who}}!',
-				{ who: 'World' }
-			); // writes "Hello, World!"
+			'Ask these questions:{{#q}} {{=q}}{{/q}}.',
+			{ q: ['Who', 'What', 'Where', 'When', 'Why'] }
+			); // writes "Ask these questions: Who What Where When Why."
 			</script>
 		</p>
 	</body>
