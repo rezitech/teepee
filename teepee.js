@@ -83,7 +83,7 @@
 					varValue = (new Function('return arguments[0].'+varName))(obj),
 					ei, eo;
 					// write
-					if (chr === storage.writer && isPositive(varValue)) html += varValue;
+					if (chr === storage.printer && isPositive(varValue)) html += varValue;
 					// if
 					else if (chr === storage.iffer && isPositive(varValue)) html += callee(e.children, obj);
 					// if not
@@ -110,7 +110,7 @@
 			looper: '#',
 			notter: '!',
 			opener: '{{',
-			writer: '=',
+			printer: '=',
 			tpl: '',
 			use: {}
 		};
@@ -163,13 +163,13 @@
 		};
 		instance.opener.toString = instance.opener;
 		//
-		// get/set the writing character(s)
-		instance.writer = function (str) {
-			if (str === undefined) return storage.writer;
-			storage.writer = String(str);
+		// get/set the printer character(s)
+		instance.printer = function (str) {
+			if (str === undefined) return storage.printer;
+			storage.printer = String(str);
 			return instance;
 		};
-		instance.writer.toString = instance.writer;
+		instance.printer.toString = instance.printer;
 		//
 		// get/set the template string
 		instance.tpl = function (str) {
@@ -205,7 +205,6 @@
 		instance.render = function (tpl, use) {
 			return tpRender(tpObject(tpArray(tpl || storage.tpl))[0], use || storage.use);
 		};
-		instance.render.toString = instance.render;
 		//
 		// Writes a rendered template to the document
 		instance.write = function (tpl, use) {

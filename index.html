@@ -230,6 +230,186 @@ teepee()
 						<p>
 							Teepee is pumped up with features to allow you to start developing immediately.
 						</p>
+						<h4>
+							Creating a new instance
+						</h4>
+						<p>
+							A new instance of teepee is created by calling the Teepee function.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">var tpA = teepee(); // an independent instance of teepee
+var tpB = teepee(); // another independent instance of teepee</pre>
+						</div>
+						<h4>
+							opener
+						</h4>
+						<p>
+							Sets the opening character(s) of Teepee code and returns the instance of Teepee.
+							If nothing is passed, the current opening character(s) are returned.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.opener; // returns the current opening character(s)
+tp.opener( '@' ); // sets the opening character as &quot;@&quot;
+tp.render( 'Hello, @=who&#125;&#125;!', { who: 'World' } ); // renders &quot;Hello, World!&quot;</pre>
+						</div>
+						<h4>
+							closer
+						</h4>
+						<h4>
+							printer
+						</h4>
+						<p>
+							Sets the character(s) used to print and returns the instance of Teepee.
+							If nothing is passed, the current printing character(s) are returned.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.printer; // returns the current printing character(s)
+tp.printer( '~' ); // sets the printing character as &quot;~&quot;
+tp.render( 'Hello, {{~who}}!', { who: 'World' } ); // renders &quot;Hello, World!&quot;</pre>
+						</div>
+						<p>
+							Sets the closing character(s) of Teepee code and returns the instance of Teepee.
+							If nothing is passed, the current closing character(s) are returned.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.iffer; // returns the current closing character(s)
+tp.closer( '@' ); // sets the closing character as &quot;@&quot;
+tp.render( 'Hello, &#123;&#123;=who@!', { who: 'World' } ); // renders &quot;Hello, World!&quot;</pre>
+						</div>
+						<h4>
+							iffer
+						</h4>
+						<p>
+							Sets the character(s) used to begin an IF statement and returns the instance of Teepee.
+							If nothing is passed, the current IF character(s) are returned.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.closer; // returns the current IF character(s)
+tp.iffer( '^' ); // sets the IF character as &quot;^&quot;
+tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders &quot;Hello, World!&quot;</pre>
+						</div>
+						<h4>
+							notter
+						</h4>
+						<p>
+							Sets the character(s) used to begin an IF NOT statement and returns the instance of Teepee.
+							If nothing is passed, the current IF NOT character(s) are returned.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.closer; // returns the current IF NOT character(s)
+tp.notter( '^' ); // sets the IF NOT character as &quot;^&quot;
+tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders &quot;Hello!&quot;</pre>
+						</div>
+						<h4>
+							looper
+						</h4>
+						<p>
+							Sets the character(s) used to begin a FOR statement and returns the instance of Teepee.
+							If nothing is passed, the current FOR character(s) are returned.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.closer; // returns the current FOR character(s)
+tp.notter( '@' ); // sets the FOR character as &quot;@&quot;
+tp.render( 'Hello,{{@planets}} {{=planets}}{{/planets}}!', { planets: ['Venus', 'Earth', 'Mars'] } ); // renders &quot;Hello, Venus Earth Mars!&quot;</pre>
+						</div>
+						<h4>
+							ender
+						</h4>
+						<p>
+							Sets the character(s) used to end an IF/IF NOT/LOOP statement and returns the instance of Teepee.
+							If nothing is passed, the current IF/IF NOT/LOOP ending character(s) are returned.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.ender; // returns the current IF/IF NOT/LOOP ending character(s)
+tp.ender( '$' ); // sets the IF/IF NOT/LOOP ending character as &quot;$&quot;
+tp.render( 'Hello, {{?isWorld}}World{{$isWorld}}!', { isWorld: true } ); // renders &quot;Hello, World!&quot;</pre>
+						</div>
+						<h4>
+							tpl
+						</h4>
+						<p>
+							Sets the template string and returns the instance of Teepee.
+							If nothing is passed, the current template string is returned.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.tpl(); // returns the current template string
+tp.tpl( 'Hello {{=who}}' ); // sets the template string as &quot;Hello {{=who}}&quot;</pre>
+						</div>
+						<h4>
+							tplById
+						</h4>
+						<p>
+							Sets the template string based on an element's content and returns the instance of Teepee.
+							If the element has a src attribute, the src file (which must reside on the same domain) will be used and may also be loaded asynchronously or synchronously.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.tplById('tpl-html-foo'); // asynchronously sets the template string by the element where id=&quot;tpl-html-foo&quot;
+tp.tplById('tpl-html-bar', false); // synchronously sets the template string by the element where id=&quot;tpl-html-foo&quot;</pre>
+						</div>
+						<h4>
+							use
+						</h4>
+						<p>
+							Sets the object to be used by the template and returns the instance of Teepee.
+							If nothing is passed, the current use object is returned.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.use(); // returns the current use object
+tp.use({ foo: 'bar' }); // sets the use object as { foo: 'bar' }</pre>
+						</div>
+						<h4>
+							render
+						</h4>
+						<p>
+							Returns the rendered template.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.render(); // returns the rendered template
+tp.render('Hello, {{=who}}!', { who: 'World' }); // returns &quot;Hello, World!&quot;</pre>
+						</div>
+						<h4>
+							write
+						</h4>
+						<p>
+							Writes the rendered template and returns the instance of Teepee.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.write(); // writes the rendered template
+tp.write('Hello, {{=who}}!', { who: 'World' }); // writes &quot;Hello, World!&quot;</pre>
+						</div>
+						<h4>
+							css
+						</h4>
+						<p>
+							Appends the rendered template as a style element to the document and returns the instance of Teepee.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.css(); // appends the rendered template as a style element to the document
+tp.css('body { background: {{=color}}; }', { color: '#000' }); // appends a style element containing &quot;body { background: #000; }&quot;</pre>
+						</div>
+						<!--
+opener
+
+Syntax
+
+Summary
+
+
+Parameters
+chars
+The character(s) to be used.
+closer
+
+Syntax
+_tp_.closer
+_tp_.closer ( _chars_ )
+Summary
+Sets the closing character(s) of Teepee code and returns the instance of Teepee. If nothing is passed, the current closing character(s) are returned.
+
+Parameters
+chars
+The character(s) to be used.-->
+
 						<!-- -->
 						<h3 id="license">
 							License
