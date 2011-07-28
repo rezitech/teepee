@@ -260,7 +260,7 @@ tp.render( 'Hello, @=who&#125;&#125;!', { who: 'World' } ); // renders &quot;Hel
 							If nothing is passed, the current closing character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.iffer; // returns the current closing character(s)
+<pre class="prettyprint lang-js">tp.closer; // returns the current closing character(s)
 tp.closer( '@' ); // sets the closing character as &quot;@&quot;
 tp.render( 'Hello, &#123;&#123;=who@!', { who: 'World' } ); // renders &quot;Hello, World!&quot;</pre>
 						</div>
@@ -284,7 +284,7 @@ tp.render( 'Hello, {{~who}}!', { who: 'World' } ); // renders &quot;Hello, World
 							If nothing is passed, the current IF character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.closer; // returns the current IF character(s)
+<pre class="prettyprint lang-js">tp.iffer; // returns the current IF character(s)
 tp.iffer( '^' ); // sets the IF character as &quot;^&quot;
 tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders &quot;Hello, World!&quot;</pre>
 						</div>
