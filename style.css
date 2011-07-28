@@ -39,7 +39,7 @@ a:active, a:focus, a:hover { text-decoration: underline; }
 	padding-top: 0.5em;
 }
 
-.doc-head, .doc-body, .doc-foot { padding: 0 20px; }
+.doc-head, .doc-body, .doc-foot { padding: 0 10px; }
 
 .doc-head-content, .doc-body-content, .doc-foot-content {
 	margin: 0 auto;
