@@ -12,6 +12,7 @@
 		<script src="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
 		<script>
 		var clientWidth = document.documentElement.clientWidth;
+		window.onbeforeprint = function (e) { alert('testing'); };
 		window.onblur = function (e) { if (clientWidth === 480) document.title = 'Teepee'; };
 		window.onfocus = function (e) { if (clientWidth === 480) document.title = 'Teepee: A Javascript templating system'; };
 		</script>
