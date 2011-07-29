@@ -10,7 +10,7 @@
 		<link rel="shortcut icon" href="favicon.ico" />
 		<link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png" />
 		<script src="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
-		<script>if (document.documentElement.clientWidth === 480) document.title = 'Teepee';</script>
+		<script>if (document.documentElement.clientWidth <= 480) document.title = 'Teepee';</script>
 	</head>
 	<body>
 		<div class="doc">
@@ -77,7 +77,7 @@
 							Teepee syntax is easy to use and completely customizable.
 						</p>
 						<div class="codeblock">
-							<a class="open" href="example-hello_world.html">Open in new window</a>
+							<a class="open" href="example-hello_world.html" target="_blank">Open in new window</a>
 <pre class="prettyprint lang-html">&lt;script&gt;
 teepee().write(
 	'Hello, {{=who}}!',
@@ -93,7 +93,7 @@ teepee().write(
 							Use simplified IF and IF NOT statements to control output.
 						</p>
 						<div class="codeblock">
-							<a class="open" href="example-if_and_if_not.html">Open in new window</a>
+							<a class="open" href="example-if_and_if_not.html" target="_blank">Open in new window</a>
 <pre class="prettyprint lang-html">&lt;script&gt;
 teepee().write(
 	'Hello{{?isEarth}}, Earth{{/isEarth}}{{?isMars}}, Mars{{/isMars}}!',
@@ -114,7 +114,7 @@ teepee().write(
 							Use a simplified loop statement to parse an array.
 						</p>
 						<div class="codeblock">
-							<a class="open" href="example-looping.html">Open in new window</a>
+							<a class="open" href="example-looping.html" target="_blank">Open in new window</a>
 <pre class="prettyprint lang-html">&lt;script&gt;
 teepee().write(
 	'Ask these questions:{{#q}} {{=q}}{{/q}}.',
@@ -130,7 +130,7 @@ teepee().write(
 							Customize the syntax to your heart's content.
 						</p>
 						<div class="codeblock">
-							<a class="open" href="example-syntax_modification.html">Open in new window</a>
+							<a class="open" href="example-syntax_modification.html" target="_blank">Open in new window</a>
 <pre class="prettyprint lang-html">&lt;script&gt;
 teepee()
 	.opener('@')
@@ -150,7 +150,7 @@ teepee()
 							Load templates from &lt;script&gt; elements.
 						</p>
 						<div class="codeblock">
-							<a class="open" href="example-script_tags.html">Open in new window</a>
+							<a class="open" href="example-script_tags.html" target="_blank">Open in new window</a>
 <pre><code class="prettyprint lang-html">&lt;script id=&quot;demo-template&quot; type=&quot;text/html&quot;&gt;</code>
 <code class="prettyprint lang-html">&lt;h1&gt;
 	{{=pageTitle}}
@@ -177,7 +177,7 @@ teepee()
 							Create templates for HTML, CSS, or anything else.
 						</p>
 						<div class="codeblock">
-							<a class="open" href="example-external_script_tags.html">Open in new window</a>
+							<a class="open" href="example-external_script_tags.html" target="_blank">Open in new window</a>
 <pre><code class="prettyprint lang-html">&lt;script src=&quot;example-external_script_tags.tpl.html&quot; id=&quot;demo-html&quot; type=&quot;text/html&quot;&gt;</code>
 <code class="prettyprint lang-html sub">&lt;!-- Contents of &quot;example-external_script_tags.tpl.html&quot; --&gt;
 &lt;h1&gt;
