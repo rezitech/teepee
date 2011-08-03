@@ -178,7 +178,7 @@ var tpB = teepee(); // another independent instance of teepee
 Sets the opening character(s) of Teepee code and returns the instance of Teepee. If nothing is passed, the current opening character(s) are returned.
 
 ```javscript
-tp.opener; // returns the current opening character(s)
+tp.opener(); // returns the current opening character(s)
 tp.opener( '@' ); // sets the opening character as "@"
 tp.render( 'Hello, @=who}}!', { who: 'World' } ); // renders "Hello, World!"
 ```
@@ -188,7 +188,7 @@ tp.render( 'Hello, @=who}}!', { who: 'World' } ); // renders "Hello, World!"
 Sets the closing character(s) of Teepee code and returns the instance of Teepee. If nothing is passed, the current closing character(s) are returned.
 
 ```javscript
-tp.closer; // returns the current closing character(s)
+tp.closer(); // returns the current closing character(s)
 tp.closer( '@' ); // sets the closing character as "~"
 tp.render( 'Hello, {{=who@!', { who: 'World' } ); // renders "Hello, World!"
 ```
@@ -198,7 +198,7 @@ tp.render( 'Hello, {{=who@!', { who: 'World' } ); // renders "Hello, World!"
 Sets the character(s) used to print and returns the instance of Teepee. If nothing is passed, the current printing character(s) are returned.
 
 ```javscript
-tp.printer; // returns the current printing character(s)
+tp.printer(); // returns the current printing character(s)
 tp.printer( '~' ); // sets the printing character as "~"
 tp.render( 'Hello, {{~who}}!', { who: 'World' } ); // renders "Hello, World!"
 ```
@@ -208,7 +208,7 @@ tp.render( 'Hello, {{~who}}!', { who: 'World' } ); // renders "Hello, World!"
 Sets the character(s) used to begin an IF statement and returns the instance of Teepee. If nothing is passed, the current IF character(s) are returned.
 
 ```javscript
-tp.iffer; // returns the current IF character(s)
+tp.iffer(); // returns the current IF character(s)
 tp.iffer( '^' ); // sets the IF character as "^"
 tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders "Hello, World!"
 ```
@@ -218,7 +218,7 @@ tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // rend
 Sets the character(s) used to begin an IF NOT statement and returns the instance of Teepee. If nothing is passed, the current IF NOT character(s) are returned.
 
 ```javscript
-tp.notter; // returns the current IF NOT character(s)
+tp.notter(); // returns the current IF NOT character(s)
 tp.notter( '^' ); // sets the IF NOT character as "^"
 tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders "Hello!"
 ```
@@ -228,7 +228,7 @@ tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // rend
 Sets the character(s) used to begin a FOR statement and returns the instance of Teepee. If nothing is passed, the current FOR character(s) are returned.
 
 ```javscript
-tp.looper; // returns the current FOR character(s)
+tp.looper(); // returns the current FOR character(s)
 tp.looper( '@' ); // sets the FOR character as "@"
 tp.render( 'Hello,{{@planets}} {{=planets}}{{/planets}}!', { planets: ['Venus', 'Earth', 'Mars'] } ); // renders "Hello, Venus Earth Mars!"
 ```
@@ -238,7 +238,7 @@ tp.render( 'Hello,{{@planets}} {{=planets}}{{/planets}}!', { planets: ['Venus', 
 Sets the character(s) used to end an IF/IF NOT/LOOP statement and returns the instance of Teepee. If nothing is passed, the current IF/IF NOT/LOOP ending character(s) are returned.
 
 ```javscript
-tp.ender; // returns the current IF/IF NOT/LOOP ending character(s)
+tp.ender(); // returns the current IF/IF NOT/LOOP ending character(s)
 tp.ender( '$' ); // sets the IF/IF NOT/LOOP ending character as "$"
 tp.render( 'Hello, {{?isWorld}}World{{$isWorld}}!', { isWorld: true } ); // renders "Hello, World!"
 ```
@@ -268,6 +268,14 @@ Sets the object to be used by the template and returns the instance of Teepee. I
 ```javscript
 tp.use(); // returns the current use object
 tp.use({ foo: 'bar' }); // sets the use object as { foo: 'bar' }
+```
+
+### andUse
+
+Extends the object to be used by the template and returns the instance of Teepee.
+
+```javscript
+tp.use({ foo: 'bar' }).andUse({ baz: 'qux' }); // sets the use object as { foo: 'bar', baz: 'qux' }
 ```
 
 ### render
