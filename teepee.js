@@ -1,16 +1,35 @@
-/*! Teepee v1.1.1 MIT/GPL2 @rezitech */
+/*! Teepee v1.2.1 MIT/GPL2 @rezitech */
 (function (doc) {
-	// return whether a value is worth displaying IMHO
-	function isPositive (val) {
-		return val !== undefined && val !== null && val !== false
+	// Returns whether value is defined
+	function isDefined (val) {
+		return val !== undefined && val !== null;
 	}
-	// return escaped characters before adding them to a regexp
+	// Returns whether value is an object
+	function isObject (val) {
+		return isDefined(val) && val.constructor === Object.prototype.constructor;
+	}
+	// Returns whether value is a string
+	function isString (val) {
+		return isDefined(val) && val.constructor === String.prototype.constructor;
+	}
+	// Returns an regexp escaped string
 	function escapeRegExp (str) {
-		return String(str).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+		return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 	}
-	// the tp function
+	// Returns an extended objects
+	function extendObject () {
+		var extObj = {}, arg = arguments, argLen = arg.length, i = -1, e;
+		while (++i < argLen)
+			if (isObject(arg[i]))
+				for (e in arg[i])
+					extObj[e] = isObject(extObj[e]) && isObject(arg[i][e])
+						? arg.callee(extObj[e], arg[i][e])
+						: arg[i][e];
+		return extObj;
+	}
+	// TP function
 	function TP () {
-		// turn a string into a template array
+		// Turns a string into a template array
 		function tpArray (str) {
 			var
 			callee = arguments.callee,
@@ -23,12 +42,12 @@
 			),
 			arr = [];
 			//
-			if (tpl !== null) arr = arr.concat([tpl[1]], [[tpl[2].substr(0, 1), tpl[2].substr(1)]], callee(tpl[3]));
+			if (isDefined(tpl)) arr = arr.concat([tpl[1]], [[tpl[2].substr(0, 1), tpl[2].substr(1)]], callee(tpl[3]));
 			else arr.push(str);
 			//
 			return arr;
 		}
-		// turn a template array into a template object
+		// Turns a template array into a template object
 		function tpObject (arr) {
 			var
 			callee = arguments.callee,
@@ -37,8 +56,8 @@
 			i = -1,
 			e;
 			//
-			while ((e = arr[++i]) !== undefined) {
-				if (e.constructor === [].constructor) {
+			while (isDefined(e = arr[++i])) {
+				if (e.constructor === Array.prototype.constructor) {
 					if (
 						(new RegExp('^('+
 						escapeRegExp(storage.iffer)+'|'+
@@ -68,41 +87,40 @@
 			//
 			return [during, after];
 		}
-		// render a template object
+		// Renders a template object
 		function tpRender (arr, obj) {
 			var
 			callee = arguments.callee,
 			html = '',
 			i = -1,
 			e;
-			while ((e = arr[++i]) !== undefined) {
-				if (e.constructor === {}.constructor) {
+			while (isDefined(e = arr[++i])) {
+				if (isObject(e)) {
 					var
 					chr = e.condition[0],
 					varName = e.condition[1],
-					varValue = (new Function('return arguments[0].'+varName))(obj),
+					varValue = (new Function('return this.'+(varName.split('||').join('||this.').split('&&').join('&&this.')))).apply(obj),
 					ei, eo;
 					// write
-					if (chr === storage.printer && isPositive(varValue)) html += varValue;
+					if (chr === storage.printer && isDefined(varValue)) html += varValue;
 					// if
-					else if (chr === storage.iffer && isPositive(varValue)) html += callee(e.children, obj);
+					else if (chr === storage.iffer && isDefined(varValue) && varValue === true) html += callee(e.children, obj);
 					// if not
-					else if (chr === storage.notter && !isPositive(varValue)) html += callee(e.children, obj);
+					else if (chr === storage.notter && !isDefined(varValue) || varValue === false) html += callee(e.children, obj);
 					// loop
-					else if (chr === storage.looper && isPositive(varValue)) {
+					else if (chr === storage.looper && isDefined(varValue)) {
 						ei = -1;
 						eo = {};
-						while ((eo[varName] = varValue[++ei]) !== undefined) html += callee(e.children, eo);
+						while (isDefined(eo[varName] = varValue[++ei])) html += callee(e.children, eo);
 					}
 				}
 				else html += e;
 			}
 			return html;
 		}
-		// the interface stuff
+		// Interface
 		var
-		callee = arguments.callee,
-		instance = this || callee,
+		instance = this,
 		storage = {
 			closer: '}}',
 			ender: '/',
@@ -114,114 +132,101 @@
 			tpl: '',
 			use: {}
 		};
-		//
-		// get/set the closing character(s)
+		// Gets or sets the closing character(s)
 		instance.closer = function (str) {
-			if (str === undefined) return storage.closer;
-			storage.closer = String(str);
+			if (!isString(str)) return storage.closer;
+			storage.closer = str;
 			return instance;
 		};
-		instance.closer.toString = instance.closer;
-		//
-		// get/set the closing character(s)
+		// Gets or sets the closing character(s)
 		instance.ender = function (str) {
-			if (str === undefined) return storage.ender;
-			storage.ender = String(str);
+			if (!isString(str)) return storage.ender;
+			storage.ender = str;
 			return instance;
 		};
-		instance.ender.toString = instance.ender;
-		//
-		// get/set the if character(s)
+		// Gets or sets the if character(s)
 		instance.iffer = function (str) {
-			if (str === undefined) return storage.iffer;
-			storage.iffer = String(str);
+			if (!isString(str)) return storage.iffer;
+			storage.iffer = str;
 			return instance;
 		};
-		instance.iffer.toString = instance.iffer;
-		//
-		// get/set the loop character(s)
+		// Gets or sets the loop character(s)
 		instance.looper = function (str) {
-			if (str === undefined) return storage.looper;
-			storage.looper = String(str);
+			if (!isString(str)) return storage.looper;
+			storage.looper = str;
 			return instance;
 		};
-		instance.iffer.toString = instance.iffer;
-		//
-		// get/set the if not character(s)
+		// Gets or sets the if not character(s)
 		instance.notter = function (str) {
-			if (str === undefined) return storage.notter;
-			storage.notter = String(str);
+			if (!isString(str)) return storage.notter;
+			storage.notter = str;
 			return instance;
 		};
-		instance.notter.toString = instance.notter;
-		//
-		// get/set the opening character(s)
+		// Gets or sets the opening character(s)
 		instance.opener = function (str) {
-			if (str === undefined) return storage.opener;
-			storage.opener = String(str);
+			if (!isString(str)) return storage.opener;
+			storage.opener = str;
 			return instance;
 		};
-		instance.opener.toString = instance.opener;
-		//
-		// get/set the printer character(s)
+		// Gets or sets the printer character(s)
 		instance.printer = function (str) {
-			if (str === undefined) return storage.printer;
-			storage.printer = String(str);
+			if (!isString(str)) return storage.printer;
+			storage.printer = str;
 			return instance;
 		};
-		instance.printer.toString = instance.printer;
-		//
-		// get/set the template string
+		// Gets or sets the template string
 		instance.tpl = function (str) {
-			if (str === undefined) return storage.tpl;
-			storage.tpl = String(str);
+			if (!isString(str)) return storage.tpl;
+			storage.tpl = str;
 			return instance;
 		};
 		//
-		// set the template string by document id
+		// Gets or sets the template string by document id
 		instance.tplById = function (id, bool) {
 			id = doc.getElementById(id);
-			bool = bool === undefined ? true : bool;
+			bool = !isDefined(bool) ? true : bool;
 			if (id.src) {
 				var r = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 				r.open('GET', id.src, bool);
 				r.send(null);
 				if (bool) r.onreadystatechange = function () {
-					if (r.readyState == 4) storage.tpl = r.responseText;
+					if (r.readyState === 4) storage.tpl = r.responseText;
 				}; else storage.tpl = r.responseText;
 			}
 			else storage.tpl = id.innerHTML;
 			return instance;
 		};
 		//
-		// get/set the scope object
-		instance.use = function (obj) {
-			if (obj === undefined) return storage.use;
-			storage.use = Object(obj);
+		// Gets or sets the scope object
+		instance.use = function (val) {
+			if (!isObject(val)) return storage.use;
+			storage.use = val;
 			return instance;
 		};
-		//
-		// render a template with a scope object
+		// Extends the scope object
+		instance.andUse = function (obj) {
+			if (isObject(obj)) storage.use = extendObject(storage.use, obj);
+			return instance;
+		};
+		// Renders a template with a scope object
 		instance.render = function (tpl, use) {
 			return tpRender(tpObject(tpArray(tpl || storage.tpl))[0], use || storage.use);
 		};
-		//
 		// Writes a rendered template to the document
 		instance.write = function (tpl, use) {
 			doc.write(instance.render(tpl, use));
 			return instance;
 		};
-		//
-		// append a rendered template to the document as a style
+		// Appends a rendered template to the document as a style
 		instance.css = function (tpl, use) {
 			var div = doc.createElement('div');
 			div.innerHTML = '<style>'+instance.render(tpl, use)+'</style>';
 			doc.documentElement.firstChild.appendChild(div.firstChild);
 			return instance;
 		};
-		//
-		// we're done here
+		// Return instance
 		return instance;
 	};
+	// Creates new instance
 	window.teepee = function () { return new TP(); };
 })(document);
