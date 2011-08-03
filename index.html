@@ -253,7 +253,7 @@ var tpB = teepee(); // another independent instance of teepee</pre>
 							If nothing is passed, the current opening character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.opener; // returns the current opening character(s)
+<pre class="prettyprint lang-js">tp.opener(); // returns the current opening character(s)
 tp.opener( '@' ); // sets the opening character as &quot;@&quot;
 tp.render( 'Hello, @=who&#125;&#125;!', { who: 'World' } ); // renders &quot;Hello, World!&quot;</pre>
 						</div>
@@ -265,7 +265,7 @@ tp.render( 'Hello, @=who&#125;&#125;!', { who: 'World' } ); // renders &quot;Hel
 							If nothing is passed, the current closing character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.closer; // returns the current closing character(s)
+<pre class="prettyprint lang-js">tp.closer(); // returns the current closing character(s)
 tp.closer( '@' ); // sets the closing character as &quot;@&quot;
 tp.render( 'Hello, &#123;&#123;=who@!', { who: 'World' } ); // renders &quot;Hello, World!&quot;</pre>
 						</div>
@@ -277,7 +277,7 @@ tp.render( 'Hello, &#123;&#123;=who@!', { who: 'World' } ); // renders &quot;Hel
 							If nothing is passed, the current printing character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.printer; // returns the current printing character(s)
+<pre class="prettyprint lang-js">tp.printer(); // returns the current printing character(s)
 tp.printer( '~' ); // sets the printing character as &quot;~&quot;
 tp.render( 'Hello, {{~who}}!', { who: 'World' } ); // renders &quot;Hello, World!&quot;</pre>
 						</div>
@@ -289,7 +289,7 @@ tp.render( 'Hello, {{~who}}!', { who: 'World' } ); // renders &quot;Hello, World
 							If nothing is passed, the current IF character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.iffer; // returns the current IF character(s)
+<pre class="prettyprint lang-js">tp.iffer(); // returns the current IF character(s)
 tp.iffer( '^' ); // sets the IF character as &quot;^&quot;
 tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders &quot;Hello, World!&quot;</pre>
 						</div>
@@ -301,7 +301,7 @@ tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // rend
 							If nothing is passed, the current IF NOT character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.notter; // returns the current IF NOT character(s)
+<pre class="prettyprint lang-js">tp.notter(); // returns the current IF NOT character(s)
 tp.notter( '^' ); // sets the IF NOT character as &quot;^&quot;
 tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // renders &quot;Hello!&quot;</pre>
 						</div>
@@ -313,7 +313,7 @@ tp.render( 'Hello, {{^isWorld}}World{{/isWorld}}!', { isWorld: true } ); // rend
 							If nothing is passed, the current FOR character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.looper; // returns the current FOR character(s)
+<pre class="prettyprint lang-js">tp.looper(); // returns the current FOR character(s)
 tp.looper( '@' ); // sets the FOR character as &quot;@&quot;
 tp.render( 'Hello,{{@planets}} {{=planets}}{{/planets}}!', { planets: ['Venus', 'Earth', 'Mars'] } ); // renders &quot;Hello, Venus Earth Mars!&quot;</pre>
 						</div>
@@ -325,7 +325,7 @@ tp.render( 'Hello,{{@planets}} {{=planets}}{{/planets}}!', { planets: ['Venus', 
 							If nothing is passed, the current IF/IF NOT/LOOP ending character(s) are returned.
 						</p>
 						<div class="codeblock">
-<pre class="prettyprint lang-js">tp.ender; // returns the current IF/IF NOT/LOOP ending character(s)
+<pre class="prettyprint lang-js">tp.ender(); // returns the current IF/IF NOT/LOOP ending character(s)
 tp.ender( '$' ); // sets the IF/IF NOT/LOOP ending character as &quot;$&quot;
 tp.render( 'Hello, {{?isWorld}}World{{$isWorld}}!', { isWorld: true } ); // renders &quot;Hello, World!&quot;</pre>
 						</div>
@@ -363,6 +363,15 @@ tp.tplById('tpl-html-bar', false); // synchronously sets the template string by 
 tp.use({ foo: 'bar' }); // sets the use object as { foo: 'bar' }</pre>
 						</div>
 						<h4>
+							andUse
+						</h4>
+						<p>
+							Extends the object to be used by the template and returns the instance of Teepee.
+						</p>
+						<div class="codeblock">
+<pre class="prettyprint lang-js">tp.use({ foo: 'bar' }).andUse({ baz: 'qux' }); // sets the use object as { foo: 'bar', baz: 'qux' }</pre>
+						</div>
+						<h4>
 							render
 						</h4>
 						<p>
@@ -392,30 +401,6 @@ tp.write('Hello, {{=who}}!', { who: 'World' }); // writes &quot;Hello, World!&qu
 <pre class="prettyprint lang-js">tp.css(); // appends the rendered template as a style element to the document
 tp.css('body { background: {{=color}}; }', { color: '#000' }); // appends a style element containing &quot;body { background: #000; }&quot;</pre>
 						</div>
-						<!--
-opener
-
-Syntax
-
-Summary
-
-
-Parameters
-chars
-The character(s) to be used.
-closer
-
-Syntax
-_tp_.closer
-_tp_.closer ( _chars_ )
-Summary
-Sets the closing character(s) of Teepee code and returns the instance of Teepee. If nothing is passed, the current closing character(s) are returned.
-
-Parameters
-chars
-The character(s) to be used.-->
-
-						<!-- -->
 						<h3 id="license">
 							License
 						</h3>
