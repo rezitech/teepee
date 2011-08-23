@@ -155,7 +155,7 @@ teepee()
 	.use(tplObject) // sets the use object as tplObject
 	.tplById('demo-css', false) // synchronously sets the template string by the element where id="demo-css"
 	.css() // appends the rendered template as a style element to the document
-	.tplById('demo-html', false) // synchronously sets the template string by the element where id="demo-html"
+	.tplByUrl('example-external_script_tags.tpl.html', false) // synchronously sets the template string by file "example-external_script_tags.tpl.html"
 	.write(); // writes the rendered template
 </script>
 ```
@@ -259,6 +259,15 @@ Sets the template string based on an element's content and returns the instance 
 ```javscript
 tp.tplById('tpl-html-foo'); // asynchronously sets the template string by the element where id="tpl-html-foo"
 tp.tplById('tpl-html-bar', false); // synchronously sets the template string by the element where id="tpl-html-foo"
+```
+
+### tplByUrl
+
+Sets the template string based on a url (which must reside on the same domain) and returns the instance of Teepee. The url may also be loaded asynchronously or synchronously.
+
+```javscript
+tp.tplByUrl('tpl.foo.html'); // asynchronously sets the template string by the contents of the file "tpl.foo.html"
+tp.tplByUrl('tpl.foo.html', false); // synchronously sets the template string by the contents of the file "tpl.foo.html"
 ```
 
 ### use
