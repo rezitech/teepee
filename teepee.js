@@ -1,4 +1,4 @@
-/*! Teepee v1.2.1 MIT/GPL2 @rezitech */
+/*! Teepee v1.2.2 MIT/GPL2 @rezitech */
 (function (doc) {
 	// Returns whether value is defined
 	function isDefined (val) {
@@ -99,14 +99,18 @@
 					var
 					chr = e.condition[0],
 					varName = e.condition[1],
-					varValue = (new Function('return this.'+(varName.split('||').join('||this.').split('&&').join('&&this.')))).apply(obj),
+					varValue = (new Function('return this.'+(
+						varName
+						.split('||([^\'\"\[\{])').join('||this.$1')
+						.split('&&').join('&&this.')
+					))).apply(obj),
 					ei, eo;
 					// write
-					if (chr === storage.printer && isDefined(varValue)) html += varValue;
+					if (chr === storage.printer) { html += String(varValue || ''); }
 					// if
-					else if (chr === storage.iffer && isDefined(varValue) && varValue === true) html += callee(e.children, obj);
+					else if (chr === storage.iffer && isDefined(varValue) && varValue != false) html += callee(e.children, obj);
 					// if not
-					else if (chr === storage.notter && !isDefined(varValue) || varValue === false) html += callee(e.children, obj);
+					else if (chr === storage.notter && (!isDefined(varValue) || varValue == false)) html += callee(e.children, obj);
 					// loop
 					else if (chr === storage.looper && isDefined(varValue)) {
 						ei = -1;
@@ -181,19 +185,23 @@
 			return instance;
 		};
 		//
-		// Gets or sets the template string by document id
+		// Sets the template string by document id
 		instance.tplById = function (id, bool) {
 			id = doc.getElementById(id);
-			bool = !isDefined(bool) ? true : bool;
-			if (id.src) {
-				var r = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-				r.open('GET', id.src, bool);
-				r.send(null);
-				if (bool) r.onreadystatechange = function () {
-					if (r.readyState === 4) storage.tpl = r.responseText;
-				}; else storage.tpl = r.responseText;
-			}
+			if (id.src) instance.tplByUrl(id.src, bool);
 			else storage.tpl = id.innerHTML;
+			return instance;
+		};
+		//
+		// Sets the template string by url
+		instance.tplByUrl = function (url, bool) {
+			bool = !isDefined(bool) ? true : bool;
+			var r = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+			r.open('GET', url, bool);
+			r.send(null);
+			if (bool) r.onreadystatechange = function () {
+				if (r.readyState === 4) storage.tpl = r.responseText;
+			}; else storage.tpl = r.responseText;
 			return instance;
 		};
 		//
