@@ -1,16 +1,19 @@
 <!doctype html>
 <html>
 	<head>
-		<meta charset="utf-8" />
-		<meta name="HandheldFriendly" content="True" />
-		<meta name="MobileOptimized" content="320" />
-		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=160, width=device-width" />
+		<meta charset="utf-8">
 		<title>Teepee: A JavaScript templating system</title>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="shortcut icon" href="favicon.ico" />
-		<link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png" />
+		<!-- Style -->
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=160, width=device-width">
+		<link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png?v=20110902">
+		<link rel="shortcut icon" href="favicon.ico?v=20110902">
+		<link rel="stylesheet" href="style.css?v=20110902">
+		<!-- Functionality -->
+		<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 		<script src="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
-		<script>if (document.documentElement.clientWidth <= 480) document.title = 'Teepee';</script>
+		<script>if (/android|iPad|iPhone|iPod/.test(navigator.platform)) document.title = 'Teepee';</script>
 	</head>
 	<body>
 		<div class="doc">
